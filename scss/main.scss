@@ -8,4 +8,103 @@
 body {
   width: 100%;
   background-color: $magenta;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+header, footer {
+  background-color: $purple;
+}
+
+#container{
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header{
+  padding: 20px;
+  .main-logo {
+    width: 40%;
+  }
+  #main-nav{
+    position: relative;
+      left: -1024px;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      transition: left 0.5s ease-in-out;
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        line-height: 40px;
+        li {
+          margin: 0 1.56vw;
+          a{
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+          }
+        }
+        li:last-child {
+          background-color: $yellow;
+        }
+      }
+    }
+  #hamburger-menu {
+      color: #fff;
+      float: right;
+      font-size: 2.8rem;
+      margin-top: 0.8rem;
+      margin-right: 0.8rem;
+      cursor: pointer;
+    }
+}
+
+
+
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+// 640px
+@media screen and (min-width: 40rem) {
+
+}
+
+// 1024px
+@media screen and (min-width: 64rem) {
+  #container{
+    header{
+      padding: 20px;
+      #main-nav{
+        float: right;
+        ul {
+          display: inline-flex;
+          li {
+            a{
+              text-transform: uppercase;
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+          li:last-child {
+            background-color: $yellow;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 1440px
+@media screen and (min-width: 90rem) {
+
 }
