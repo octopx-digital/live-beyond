@@ -32,10 +32,14 @@ For production, just run the follow command inside the root folder:
 
 ## Execution
 
-This project is built to run in NodeJS, therefore it is necessary to execute this command in the root directory of your local repository of the project:
+This project is built to run in NodeJS, therefore it is using nodemon as a utility to monitor for any changes in your source and automatically restart your server. To install, get node.js, then from your terminal run:
+
+```npm install -g nodemon```
+
+Then, to execute this command, run in the root directory of your local repository of the project:
 
 ```
-node app
+nodemon app
 ```
 
 ## License
