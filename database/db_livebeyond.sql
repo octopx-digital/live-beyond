@@ -57,6 +57,7 @@ CREATE TABLE `events` (
   `partner` varchar(200) NOT NULL,
   `logo` varchar(150) NOT NULL,
   `link` varchar(255) NOT NULL,
+  `position` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -67,7 +68,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'yoga_class','Yoga class at Budweiser Gardens','March 24th','10am','99 Dundas St, London, ON','Yoga Shack','logo_yoga','http://www.yogashack.ca'),(2,'support_group','Support group talk event','April 19th','2pm to 5pm','London Public Library - 251 Dundas St, London, ON','Be A Donor','logo_beadoor','https://beadonor.ca'),(3,'movie_tickets','Half price movie tickets','April',NULL,'All Cineplex locations in Ontario','Cineplex','logo_cineplex','https://www.cineplex.com'),(4,'gym_membership','30% discount on gym memberships','March - April',NULL,'All Goodlife Fitness locations in Ontario','Goodlife Fitness','logo_goodlife','https://www.goodlifefitness.com');
+INSERT INTO `events` VALUES (1,'yoga_class','Yoga class at Budweiser Gardens','March 24th','10am','99 Dundas St, London, ON','Yoga Shack','logo_yoga','http://www.yogashack.ca',1),(2,'support_group','Support group talk event','April 19th','2pm to 5pm','London Public Library - 251 Dundas St, London, ON','Be A Donor','logo_beadoor','https://beadonor.ca',2),(3,'movie_tickets','Half price movie tickets','April',NULL,'All Cineplex locations in Ontario','Cineplex','logo_cineplex','https://www.cineplex.com',3),(4,'gym_membership','30% discount on gym memberships','March - April',NULL,'All Goodlife Fitness locations in Ontario','Goodlife Fitness','logo_goodlife','https://www.goodlifefitness.com',4);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-03 14:04:39
+-- Dump completed on 2018-03-03 18:18:07
