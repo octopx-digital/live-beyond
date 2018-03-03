@@ -8,7 +8,10 @@ var handlebars = require('handlebars');
 var xhb  = require('express-handlebars');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var facts = require('./routes/facts');
+var stats = require('./routes/stats');
+var myths = require('./routes/myths');
+var events = require('./routes/events');
 
 var app = express();
 
@@ -26,7 +29,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/', facts);
+app.use('/', stats);
+app.use('/', myths);
+app.use('/', events);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
