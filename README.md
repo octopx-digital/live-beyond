@@ -1,4 +1,4 @@
-# Live Beyond Your Life
+# Live Beyond Your Life - In Progress
 
 This is the website for "Live Beyond Your Life" organ donation campaign in Ontario, Canada.
 
@@ -22,18 +22,24 @@ After project cloned and all prerequisites installed, it is necessary running th
 npm install
 ```
 
-Grunt is implemented as a task runner for this project. Grunt tasks include: concatenation and js uglify; it runs sass; and autoprefixer, pixrem and cssnano through postcss. Grunt watches for changes in js and all scss files. In order to watch changes made in the files, run grunt inside the project folder by the command below:
+Webpack is implemented as a module bundler for this project. Webpack tasks include: concatenation, js uglify and syntax transformation with Babel; it runs sass. Webpack watches for changes in js and all scss files. Webpack will only uglify files during production. In order to watch changes made during development in the files, run webpack inside the project folder by the command below:
 
-```
-grunt
-```
+```npm run dev```
+
+For production, just run the follow command inside the root folder:
+
+```npm run production```
 
 ## Execution
 
-This project is built to run in NodeJS, therefore it is necessary to execute this command in the root directory of your local repository of the project:
+This project is built to run in NodeJS, therefore it is using nodemon as a utility to monitor for any changes in your source and automatically restart your server. To install, get node.js, then from your terminal run:
+
+```npm install -g nodemon```
+
+Then, to execute this command, run in the root directory of your local repository of the project:
 
 ```
-node app
+nodemon app
 ```
 
 ## License
