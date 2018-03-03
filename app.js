@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var handlebars = require('handlebars');
-var exphbs  = require('express-handlebars');
+var xhb  = require('express-handlebars');
 
 // var xhb = require('ejs');
 
@@ -16,8 +16,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.engine('ejs', xhb({defaultLayout: 'main'}));
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', xhb({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 // app.set('view engine', 'ejs');
 
