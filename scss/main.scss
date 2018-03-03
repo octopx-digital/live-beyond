@@ -4,3 +4,8 @@
 @import "fonts";
 @import "globals";
 @import "mixins";
+
+body {
+  width: 100%;
+  background-color: $magenta;
+}
