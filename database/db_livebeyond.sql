@@ -24,11 +24,13 @@ DROP TABLE IF EXISTS `banner`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `banner` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `photo` varchar(200) NOT NULL,
+  `alt` varchar(100) NOT NULL,
+  `position` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +39,7 @@ CREATE TABLE `banner` (
 
 LOCK TABLES `banner` WRITE;
 /*!40000 ALTER TABLE `banner` DISABLE KEYS */;
+INSERT INTO `banner` VALUES (1,'woman_headphones',NULL,'banner_woman_headphones','Woman on headphones',2),(2,'woman_tree',NULL,'banner_woman_tree','Woman and tree',5),(3,'guy_bike',NULL,'banner_bike','Guy on a bike',3),(5,'family_dog',NULL,'banner_family','Family and dog',4),(6,'woman_paint',NULL,'banner_woman_paint','Woman painting',1),(7,'guy_hat',NULL,'banner_guy_hat','Guy hat',6),(8,'woman_phone',NULL,'banner_woman_phone','Woman phone',7),(9,'guy_tea',NULL,'banner_guy_tea','Guy drinking tea',8);
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-03 18:18:07
+-- Dump completed on 2018-03-04 16:06:35
