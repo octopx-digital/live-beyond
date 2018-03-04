@@ -1,7 +1,11 @@
 (() => {
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
+  var mainBanner = document.querySelector('#main-banner');
   var menuOpen = false;
+  var bannerIndex = 0;
+
+  var galleryTl = new TimelineLite();
 
   function checkScrollMenu() {
     // if menu is open, close it when scroll
@@ -24,6 +28,45 @@
       hambMenu.classList.add('ion-android-menu');
       header.classList.remove('openmenu');
     }
+  }
+
+  function rotateBanner() {
+    let timeout = setTimeout(bannerAnimation, 8000);
+  }
+
+  function bannerAnimation() {
+    let photos = mainBanner.querySelectorAll('.banner-photo');
+    console.log(photos.length);
+    if (bannerIndex === photos.length-1) {
+      galleryTl.to(photos[bannerIndex], 2, {left: "100%"});
+      galleryTl.to(photos[0], 2, {left: 0}, "-=2");
+      bannerIndex = 0;
+    }
+    else {
+      galleryTl.to(photos[bannerIndex+1], 0, {visibility: "hidden", left: "100%"});
+      galleryTl.to(photos[bannerIndex], 2, {left: "-100%"});
+      galleryTl.to(photos[bannerIndex+1], 2, {visibility: "visible", left: 0}, "-=2");
+      bannerIndex = bannerIndex+1;
+    }
+    rotateBanner();
+  }
+
+  function getBanner() {
+    console.log('from getBanner');
+    let url = 'banner/getAll';
+
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        data.banner.forEach((banner) => {
+          let image = `<img class="banner-photo" src="images/${banner.photo}_small.jpg" alt="${banner.alt}">`;
+          mainBanner.innerHTML += image;
+        });
+        rotateBanner();
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   function getFacts() {
@@ -82,11 +125,11 @@
       });
   }
 
+  getBanner.call();
   getFacts.call();
   getStats.call();
   getMyths.call();
   getEvents.call();
   window.addEventListener('scroll', checkScrollMenu, false);
   hambMenu.addEventListener('click', menuAnimation, false);
-
 })();
