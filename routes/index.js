@@ -6,6 +6,7 @@ var config = require('../config');
 router.get('/', function(req, res, next) {
   res.render('home', {
     title: 'Live Beyond Your Life'
+    // banner: banner
   });
 });
 
