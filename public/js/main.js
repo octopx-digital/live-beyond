@@ -27,12 +27,12 @@
   }
 
   function getFacts() {
-    console.log('from getFacts');
+    // console.log('from getFacts');
     let url = 'facts/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
-      .then((data) => {
+        .then((data) => {
         console.log(data);
       })
       .catch(function(error) {
@@ -41,7 +41,7 @@
   }
 
   function getStats() {
-    console.log('from getStats');
+    // console.log('from getStats');
     let url = 'stats/getAll';
 
     fetch(url)
@@ -55,7 +55,7 @@
   }
 
   function getMyths() {
-    console.log('from getMyths');
+    // console.log('from getMyths');
     let url = 'myths/getAll';
 
     fetch(url)
@@ -69,13 +69,29 @@
   }
 
   function getEvents() {
-    console.log('from getEvents');
+    // console.log('from getEvents');
     let url = 'events/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.events);
+        let container = document.querySelector('#events-container');
+        data.events.forEach((event) => {
+          console.log(event);
+          let newEvent = `<div class="events">
+            <div class="event-data">
+              <h2>`+event.title+`</h2>
+              <h3>`+event.date+`</h3>
+              <img src="images/`+event.logo+`.png" alt="`+event.partner+`">
+
+              <p>`+event.address+`</br>
+
+              <a href="`+event.link+`"><p>Event Details</p></a>
+              </div>
+            </div>`;
+            container.innerHTML += newEvent;
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -86,7 +102,6 @@
   getStats.call();
   getMyths.call();
   getEvents.call();
-  window.addEventListener('scroll', checkScrollMenu, false);
   hambMenu.addEventListener('click', menuAnimation, false);
 
 })();
