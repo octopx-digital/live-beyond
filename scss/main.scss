@@ -4,3 +4,134 @@
 @import "fonts";
 @import "globals";
 @import "mixins";
+
+body {
+  width: 100%;
+  background-color: $magenta;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+header, footer {
+  background-color: $purple;
+}
+
+#container{
+  min-width: 320px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header{
+  padding: 20px;
+  height: 4.625rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: height 0.3s 0.5s ease-in-out;
+  z-index: 100;
+  .main-logo {
+    width: 40%;
+  }
+  #main-nav{
+    position: relative;
+      left: -1024px;
+      // width: 100%;
+      margin-bottom: 0.5rem;
+      transition: left 0.5s ease-in-out;
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        li {
+          margin: 0 1.56vw;
+          float: left;
+          a{
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+          }
+        }
+        li:last-child {
+          width: 30%;
+          margin: 0 auto;
+          border-radius: 10px;
+          background-color: $yellow;
+        }
+      }
+    }
+  #hamburger-menu {
+      color: #fff;
+      float: right;
+      font-size: 2.8rem;
+      margin-top: 0.8rem;
+      margin-right: 0.8rem;
+      cursor: pointer;
+    }
+}
+header.openmenu {
+  height: 25rem;
+  max-height: auto;
+  transition: height 0.3s ease-in-out;
+    #main-nav {
+      left: 0;
+      transition: left 0.5s 0.3s ease-in-out;
+    }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+// 640px
+@media screen and (min-width: 40rem) {
+
+}
+
+// 1024px
+@media screen and (min-width: 64rem) {
+  #container{
+    header{
+      width: 100%;
+      padding: 20px;
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      height: auto;
+      #main-nav{
+        // margin-bottom: 0;
+        left: 0;
+        // float: right;
+        ul {
+          display: inline-flex;
+          flex-direction: row;
+
+          li {
+            a{
+              text-transform: uppercase;
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+          li:last-child {
+            background-color: $yellow;
+          }
+        }
+      }
+      #hamburger-menu {
+        display: none;
+      }
+    }
+  }
+}
+
+// 1440px
+@media screen and (min-width: 90rem) {
+
+}

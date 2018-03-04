@@ -4,12 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="css/main.css">
 
   <title>{{ Title }}</title>
 </head>
 <body>
-  {{{ body }}}
+  <div id="container">
+    <h1 class="hidden">Live Beyond Your Life Homepage Campaign</h1>
+    <header>
+      <div>
+        <a href="#"><img class="main-logo" src="images/logo_white.svg" alt="Main Logo"></a>
+        <i id="hamburger-menu" class="ion-android-menu"></i>
+      </div>
+      <nav id="main-nav">
+        <h1 class="hidden">Main Navigation</h1>
+        <ul>
+          <li><a href="#">Did you know?</a></li>
+          <li><a href="#">The Organs</a></li>
+          <li><a href="#">Demystifying</a></li>
+          <li><a href="#">Video</a></li>
+          <li><a href="#">Benefits Club</a></li>
+          <li><a href="#">#Livebeyondyourlife</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </nav>
+    </header>
+    {{{ body }}}
+    <footer>
+      <nav id="footer-nav">
+        <a href="#"><img class="main-logo" src="images/logo_white.svg" alt="Main Logo"></a>
+        <h1 class="hidden">Footer Navigation</h1>
+        <ul>
+          <li><a href="#">Register as a Donor</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </div>
   <script src="js/build/main.js"></script>
 </body>
 </html>

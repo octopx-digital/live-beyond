@@ -1,5 +1,30 @@
 (() => {
-  console.log('hey');
+  var header = document.querySelector('header');
+  var hambMenu = header.querySelector('#hamburger-menu');
+  var menuOpen = false;
+
+  function checkScrollMenu() {
+    // if menu is open, close it when scroll
+    if(menuOpen === true) {
+      menuAnimation();
+    }
+  }
+
+  function menuAnimation() {
+    if (!menuOpen) {
+      menuOpen = true;
+      hambMenu.classList.remove('ion-android-menu');
+      hambMenu.classList.add('ion-android-close');
+      header.classList.add('openmenu');
+    }
+    else {
+      menuOpen = false;
+      // menuTl.reverse();
+      hambMenu.classList.remove('ion-android-close');
+      hambMenu.classList.add('ion-android-menu');
+      header.classList.remove('openmenu');
+    }
+  }
 
   function getFacts() {
     console.log('from getFacts');
@@ -61,5 +86,7 @@
   getStats.call();
   getMyths.call();
   getEvents.call();
+  window.addEventListener('scroll', checkScrollMenu, false);
+  hambMenu.addEventListener('click', menuAnimation, false);
 
 })();
