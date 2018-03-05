@@ -30,6 +30,20 @@ For production, just run the follow command inside the root folder:
 
 ```npm run production```
 
+Furthermore, it is necessary to import the database content to local application. It is possible to import it using PHPMyAdmin interface or via command line:
+
+```
+mysql -h localhost -u <user> -p <password> <database name> < db_livebeyond.sql
+```
+
+After importing database content to local database application, it is necessary to configure node credentials configuration to connect to your database. Into the root folder exists a file called <code>config-sample.js</code>. Copy or rename this file to <code>config.js</code>:
+
+```
+cp config-sample.js config.js
+```
+
+Edit <code>config.js</code>, including the correct credentials of your database application.
+
 ## Execution
 
 This project is built to run in NodeJS, therefore it is using nodemon as a utility to monitor for any changes in your source and automatically restart your server. To install, get node.js, then from your terminal run:
