@@ -1,3 +1,5 @@
+import resize from './modules/image_resize';
+
 (() => {
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
@@ -5,7 +7,10 @@
   var menuOpen = false;
   var bannerIndex = 0;
 
-  var galleryTl = new TimelineLite();
+  var bannerTl = new TimelineMax({
+    repeat: -1,
+    paused: true
+  });
 
   function checkScrollMenu() {
     // if menu is open, close it when scroll
@@ -13,6 +18,7 @@
       menuAnimation();
     }
   }
+
 
   function menuAnimation() {
     if (!menuOpen) {
@@ -23,32 +29,31 @@
     }
     else {
       menuOpen = false;
-      // menuTl.reverse();
       hambMenu.classList.remove('ion-android-close');
       hambMenu.classList.add('ion-android-menu');
       header.classList.remove('openmenu');
     }
   }
 
-  function rotateBanner() {
-    let timeout = setTimeout(bannerAnimation, 8000);
-  }
-
   function bannerAnimation() {
     let photos = mainBanner.querySelectorAll('.banner-photo');
-    console.log(photos.length);
-    if (bannerIndex === photos.length-1) {
-      galleryTl.to(photos[bannerIndex], 2, {left: "100%"});
-      galleryTl.to(photos[0], 2, {left: 0}, "-=2");
-      bannerIndex = 0;
-    }
-    else {
-      galleryTl.to(photos[bannerIndex+1], 0, {visibility: "hidden", left: "100%"});
-      galleryTl.to(photos[bannerIndex], 2, {left: "-100%"});
-      galleryTl.to(photos[bannerIndex+1], 2, {visibility: "visible", left: 0}, "-=2");
-      bannerIndex = bannerIndex+1;
-    }
-    rotateBanner();
+
+    bannerTl.to(photos[1], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[2], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[1], 0, {opacity: 0});
+    bannerTl.to(photos[3], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[2], 0, {opacity: 0});
+    bannerTl.to(photos[4], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[3], 0, {opacity: 0});
+    bannerTl.to(photos[5], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[4], 0, {opacity: 0});
+    bannerTl.to(photos[6], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[5], 0, {opacity: 0});
+    bannerTl.to(photos[7], 2, {opacity: 1}, "+=5.0");
+    bannerTl.to(photos[6], 0, {opacity: 0});
+    bannerTl.to(photos[7], 2, {opacity: 0}, "+=5.0");
+
+    bannerTl.play();
   }
 
   function getBanner() {
@@ -59,10 +64,11 @@
       .then((resp) => resp.json())
       .then((data) => {
         data.banner.forEach((banner) => {
-          let image = `<img class="banner-photo" src="images/${banner.photo}_small.jpg" alt="${banner.alt}">`;
+          let image = `<img class="banner-photo media-change" src="images/${banner.photo}_large.jpg" alt="${banner.alt}">`;
           mainBanner.innerHTML += image;
         });
-        rotateBanner();
+        resize.setImageSize.call(document.querySelectorAll('.media-change'));
+        bannerAnimation();
       })
       .catch(function(error) {
         console.log(error);
@@ -125,11 +131,15 @@
       });
   }
 
+  resize.checkScreenSize.call(window.innerWidth);
   getBanner.call();
   getFacts.call();
   getStats.call();
   getMyths.call();
   getEvents.call();
+
+  window.addEventListener('resize', resize.checkScreenSize, false);
+  window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
   hambMenu.addEventListener('click', menuAnimation, false);
 })();
