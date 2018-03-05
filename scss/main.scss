@@ -244,15 +244,37 @@ header.openmenu {
     }
   }
 
-footer {
-  // position: absolute;
-  bottom: 0;
-  width: 100%;
-  min-height: 100px;
-  .main-logo{
-    width: 20%;
-  }
-}
+// footer {
+//   // position: absolute;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-content: center;
+//   padding: 10px;
+//   bottom: 0;
+//   text-align: center;
+//   // width: 100%;
+//   // min-height: 100px;
+//   .main-logo{
+//     width: 50%;
+//     margin: 0 auto;
+//   }
+//   nav{
+//     margin: 1rem 0;
+//     ul li{
+//       padding: 0.5rem 1rem;
+//       border-radius: 6px;
+//       background-color: $yellow;
+//
+//       a{
+//         color: #fff;
+//         text-transform: uppercase;
+//         text-decoration: none;
+//         font-family: $fontText;
+//       }
+//     }
+//   }
+// }
 
 #main-banner {
   overflow: hidden;
@@ -369,6 +391,35 @@ footer {
               padding: 30px 3px 10px 3px;
             }
           }
+        }
+      }
+    }
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    padding: 30px;
+    bottom: 0;
+    width: 100%;
+    // min-height: 100px;
+    .main-logo{
+      width: 50%;
+      float: right;
+    }
+    nav{
+      ul li{
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: bold;
+        background-color: $yellow;
+        a{
+          color: #fff;
+          text-transform: uppercase;
+          text-decoration: none;
+
         }
       }
     }
