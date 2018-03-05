@@ -1,3 +1,5 @@
+import arrows from './navigation';
+
 (() => {
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
@@ -118,23 +120,27 @@
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data.events);
+        // console.log(data.events);
         let container = document.querySelector('#events-container');
-        data.events.forEach((event) => {
-          console.log(event);
+        data.events.forEach(({title, date, time, address, partner, logo, link}) => {
+          let tern = "";
+          if(time != null){
+            tern = `<div class="inline"><h5>When:</h5><p>${time}</p></div>`;
+          }
           let newEvent = `<div class="events">
             <div class="event-data">
-              <h2>`+event.title+`</h2>
-              <h3>`+event.date+`</h3>
-              <img src="images/`+event.logo+`.png" alt="`+event.partner+`">
-
-              <p>`+event.address+`</br>
-
-              <a href="`+event.link+`"><p>Event Details</p></a>
+              <h2>${title}</h2>
+              <h3>${date}</h3>
+              `+tern+`
+              <div class="inline"><h5>Where:</h5><p>${address}</p></div>
+              <p class="tiny">in association with</p>
+              <img src="images/${logo}.png" alt="${partner}">
+              <a href="${link}"><p>Details</p></a>
               </div>
             </div>`;
             container.innerHTML += newEvent;
         });
+        arrows();
       })
       .catch(function(error) {
         console.log(error);
