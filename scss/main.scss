@@ -100,6 +100,56 @@ header.openmenu {
     }
 }
 
+#facts {
+  margin: 2rem 0;
+  h2 {
+    @extend .text;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: $purple;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  #fact-wrapper {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-row-gap: 1.5rem;
+    .fact {
+      display: flex;
+      justify-self: center;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      height: 100%;
+      max-width: 200px;
+      background: $purple;
+      background: linear-gradient(to bottom, $pink, $purple);
+      border: none;
+      border-radius: 3px;
+      box-shadow: 0 1rem 1.5rem -0.5rem rgba(0,0,0,0.8),
+                  20px -10px 30px -30px rgba(0,0,0,0.8);
+      .fact-desc {
+        font-family: $fontFacts;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin: 0.5rem 0.5rem;
+        text-align: center;
+        line-height: 2rem;
+        .number {
+          font-size: 2.8rem;
+          color: $yellow;
+        }
+        .bigger {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
 #events{
   margin: 50px 0 0 0;
   // width: 100%;
@@ -335,6 +385,56 @@ footer {
     }
   }
 
+  #facts {
+    margin: 4rem 0;
+    h2 {
+      // @extend .text;
+      // font-weight: 500;
+      font-size: 1.8rem;
+      // color: $purple;
+      // text-align: center;
+      // text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    #fact-wrapper {
+      // display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-row-gap: 0;
+      grid-column-gap: 2rem;
+      margin: 0 2rem;
+      // .fact {
+      //   // display: flex;
+      //   // justify-self: center;
+      //   // justify-content: center;
+      //   // align-items: center;
+      //   // width: 90%;
+      //   // height: 100%;
+      //   // max-width: 200px;
+      //   // background: $purple;
+      //   // background: linear-gradient(to bottom, $pink, $purple);
+      //   // border: none;
+      //   // border-radius: 3px;
+      //   // box-shadow: 0 1rem 1rem -1rem #000000;
+      //   // .fact-desc {
+      //   //   font-family: $fontFacts;
+      //   //   font-weight: bold;
+      //   //   font-size: 1.2rem;
+      //   //   color: #ffffff;
+      //   //   margin: 0.5rem 0.5rem;
+      //   //   text-align: center;
+      //   //   line-height: 2rem;
+      //   //   .number {
+      //   //     font-size: 2.8rem;
+      //   //     color: $yellow;
+      //   //   }
+      //   //   .bigger {
+      //   //     font-size: 1.8rem;
+      //   //   }
+      //   // }
+      // }
+    }
+  }
+
 #events{
   #event-caroussel{
     .events-holder{
@@ -424,6 +524,58 @@ footer {
 
     .banner-photo {
       margin-top: 5rem;
+    }
+  }
+
+  #facts {
+    margin: 4rem 0;
+    h2 {
+      // @extend .text;
+      // font-weight: 500;
+      font-size: 3rem;
+      // color: $purple;
+      // text-align: center;
+      // text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    #fact-wrapper {
+      // display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-row-gap: 0;
+      grid-column-gap: 2rem;
+      margin: 0 6rem;
+      .fact {
+        // display: flex;
+        // justify-self: center;
+        // justify-content: center;
+        // align-items: center;
+        width: 100%;
+        // padding: 0.5 1rem;
+        // height: 100%;
+        max-width: 300px;
+        // background: $purple;
+        // background: linear-gradient(to bottom, $pink, $purple);
+        // border: none;
+        // border-radius: 3px;
+        // box-shadow: 0 1rem 1rem -1rem #000000;
+        .fact-desc {
+          // font-family: $fontFacts;
+          // font-weight: bold;
+          font-size: 1.8rem;
+          // color: #ffffff;
+          margin: 1rem 0.5rem;
+          // padding: 0 0.5rem;
+          // text-align: center;
+          line-height: 2.8rem;
+          .number {
+            font-size: 3.6rem;
+            color: $yellow;
+          }
+          .bigger {
+            font-size: 2.8rem;
+          }
+        }
+      }
     }
   }
 

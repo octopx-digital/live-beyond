@@ -82,7 +82,14 @@ import arrows from './navigation';
     fetch(url)
       .then((resp) => resp.json())
         .then((data) => {
-        console.log(data);
+          console.log(data);
+          let factWrapper = document.querySelector('#fact-wrapper');
+          data.facts.forEach(({name, description}) => {
+            let newFact = `<div id="${name}" class="fact">
+              <p class="fact-desc">${description}</p>
+              </div>`;
+            factWrapper.innerHTML += newFact;
+          });
       })
       .catch(function(error) {
         console.log(error);
