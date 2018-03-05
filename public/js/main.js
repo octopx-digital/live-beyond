@@ -1,4 +1,5 @@
 import resize from './modules/image_resize';
+import arrows from './navigation';
 
 (() => {
   var header = document.querySelector('header');
@@ -18,7 +19,6 @@ import resize from './modules/image_resize';
       menuAnimation();
     }
   }
-
 
   function menuAnimation() {
     if (!menuOpen) {
@@ -76,12 +76,12 @@ import resize from './modules/image_resize';
   }
 
   function getFacts() {
-    console.log('from getFacts');
+    // console.log('from getFacts');
     let url = 'facts/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
-      .then((data) => {
+        .then((data) => {
         console.log(data);
       })
       .catch(function(error) {
@@ -90,7 +90,7 @@ import resize from './modules/image_resize';
   }
 
   function getStats() {
-    console.log('from getStats');
+    // console.log('from getStats');
     let url = 'stats/getAll';
 
     fetch(url)
@@ -104,7 +104,7 @@ import resize from './modules/image_resize';
   }
 
   function getMyths() {
-    console.log('from getMyths');
+    // console.log('from getMyths');
     let url = 'myths/getAll';
 
     fetch(url)
@@ -118,13 +118,33 @@ import resize from './modules/image_resize';
   }
 
   function getEvents() {
-    console.log('from getEvents');
+    // console.log('from getEvents');
     let url = 'events/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data.events);
+        let container = document.querySelector('#events-container');
+        data.events.forEach(({title, date, time, address, partner, logo, link}) => {
+          let tern = "";
+          if(time != null){
+            tern = `<div class="inline"><h5>When:</h5><p>${time}</p></div>`;
+          }
+          let newEvent = `<div class="events">
+            <div class="event-data">
+              <h2>${title}</h2>
+              <h3>${date}</h3>
+              `+tern+`
+              <div class="inline"><h5>Where:</h5><p>${address}</p></div>
+              <p class="tiny">in association with</p>
+              <img src="images/${logo}.png" alt="${partner}">
+              <a href="${link}"><p>Details</p></a>
+              </div>
+            </div>`;
+            container.innerHTML += newEvent;
+        });
+        arrows();
       })
       .catch(function(error) {
         console.log(error);
