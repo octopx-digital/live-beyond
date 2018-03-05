@@ -32,22 +32,21 @@ header, footer {
 
 header{
   width: 100%;
-  // padding: 20px;
   height: 4rem;
   position: fixed;
   top: 0;
   left: 0;
-  transition: height 0.3s 0.5s ease-in-out;
+  // transition: height 0.3s 0.5s ease-in-out;
   z-index: 100;
-  opacity: 1;
+  // opacity: 1;
   div {
     background-color: $purple;
     height: 4rem;
     z-index: 150;
     opacity: 1;
     .main-logo {
-      width: 40%;
-      margin: 0.8rem 0 0 0.8rem;
+      width: 9rem;
+      margin: 1rem 0 0 0.8rem;
     }
     #hamburger-menu {
       color: #fff;
@@ -58,17 +57,13 @@ header{
     }
   }
   #main-nav{
-    background-color: $purple;
+    background-color: rgba(53, 9, 50, 0.8);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
     position: relative;
     top: -600%;
-    // opacity: 1;
-    // left: 0;
     width: 100%;
     @extend .text;
-    margin-bottom: 0.5rem;
-    // text-align: center;
     z-index: -50;
     transition: top 0.8s ease-in-out;
     ul {
@@ -81,7 +76,6 @@ header{
       text-align: center;
       li {
         margin: 0.5rem 0;
-        // float: left;
         a{
           text-transform: uppercase;
           text-decoration: none;
@@ -101,12 +95,8 @@ header{
   }
 }
 header.openmenu {
-  // height: 25rem;
-  // max-height: auto;
-  // transition: height 0.3s ease-in-out;
     #main-nav {
       top: 0;
-      // transition: top 0.8s ease-in-out;
     }
 }
 
@@ -257,24 +247,93 @@ footer {
 #main-banner {
   overflow: hidden;
   width: 100%;
+  // height: 100vh;
   position: relative;
+  color: $pinkLight;
+
+  .banner-title {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    font-family: $fontBanner;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    line-height: 3.8rem;
+    z-index: 50;
+  }
+
+  .banner-tagline {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    z-index: 50;
+    line-height: 2rem;
+    p {
+      @extend .text;
+      font-size: 1rem;
+    }
+  }
+
   .banner-photo {
     position: absolute;
     width: 100%;
-    bottom: 0;
-    left: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
   }
   .banner-photo:first-of-type{
     position: relative;
-    width: 100%;
-    // top: 0;
-    left: 0;
-    bottom: 0;
+    opacity: 1;
   }
 }
 
 // 640px
 @media screen and (min-width: 40rem) {
+  header{
+    height: 6rem;
+    div {
+      height: 6rem;
+      .main-logo {
+        width: 13rem;
+        margin: 1.4rem 0 0 1.5rem;
+      }
+      #hamburger-menu {
+        font-size: 3.2rem;
+        margin: 1rem 1.5rem 0 0;
+      }
+    }
+    #main-nav{
+      ul {
+        padding: 1.2rem 0;
+        li {
+          margin: 0.8rem 0;
+          a{
+            font-size: 1.5rem;
+          }
+        }
+        li:last-child {
+          max-width: 12rem;
+        }
+      }
+    }
+  }
+
+  #main-banner {
+    .banner-title {
+      width: 50%;
+      top: 20%;
+      left: 10%;
+      font-size: 4.8rem;
+      line-height: 7.5rem;
+    }
+
+    .banner-tagline {
+      line-height: 3.2rem;
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
 
 #events{
   #event-caroussel{
@@ -306,41 +365,65 @@ footer {
 
 // 1024px
 @media screen and (min-width: 64rem) {
-  #container{
-    header{
-      width: 100%;
-      padding: 20px;
-      display: inline-flex;
-      flex-direction: row;
-      align-items: center;
-      height: auto;
+  header{
+    display: flex;
+    align-items: center;
+    div {
       .main-logo {
-        width: 40%;
-        // max-width:
-      }
-      #main-nav{
-        // margin-bottom: 0;
-        left: 0;
-        // float: right;
-        ul {
-          display: inline-flex;
-          flex-direction: row;
-
-          li {
-            a{
-              text-transform: uppercase;
-              text-decoration: none;
-              color: #fff;
-            }
-          }
-          li:last-child {
-            background-color: $yellow;
-          }
-        }
+        width: 13rem;
+        margin: 1.4rem 0 0 1.5rem;
       }
       #hamburger-menu {
         display: none;
       }
+    }
+    #main-nav{
+      background-color: transparent;
+      border-radius: 0;
+      top: auto;
+      margin-right: 1.5rem;
+      ul {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        li {
+          display: inline-block;
+          margin: 0 1.4vw;
+          a{
+            font-size: 1rem;
+          }
+        }
+        li:last-child {
+          max-width: 6rem;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  #main-banner {
+    .banner-title {
+      width: 100%;
+      left: 5%;
+      font-size: 6rem;
+      line-height: 7.5rem;
+    }
+
+    .banner-tagline {
+      bottom: 25%;
+      left: 5%;
+      line-height: normal;
+      p {
+        display: inline;
+        font-size: 1.8rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .banner-photo {
+      margin-top: 5rem;
     }
   }
 
@@ -377,7 +460,15 @@ footer {
 
 // 1440px
 @media screen and (min-width: 90rem) {
-
+  header{
+    #main-nav{
+      ul {
+        li {
+          margin: 0 1.3rem;
+        }
+      }
+    }
+  }
   #events{
     #event-caroussel{
       .events-holder{

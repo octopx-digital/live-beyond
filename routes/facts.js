@@ -12,7 +12,7 @@ router.get('/facts/getAll', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
       //return result as json
       res.json({
         facts: result
