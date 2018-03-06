@@ -124,7 +124,7 @@ import instagram from './modules/instagram';
         let newData = data.video[0];
         // data.forEach(() => {
           let mainVideo = document.querySelector('#main-video');
-          let placeholder = `<img class="media-change" src="images/${newData.placeholder}large.jpg" alt="Main Video">`;
+          let placeholder = `<img class="media-change" src="images/${newData.placeholder}_large.jpg" alt="Main Video">`;
           mainVideo.innerHTML += placeholder;
         // })
 
