@@ -437,7 +437,7 @@ footer {
 }
 
 #instagram {
-  margin: 3rem 0;
+  margin: 3rem 0 2rem 0;
   width: 100%;
   overflow: hidden;
   h2 {
@@ -540,6 +540,33 @@ footer {
       border-bottom-color: $wine;
       .insta-post {
         color: $wine;
+      }
+    }
+  }
+}
+
+#association {
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 1rem 1rem auto;
+  text-align: right;
+  p {
+    @extend .text;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  #logo-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    a {
+      #logo-beadonor {
+        width: 90%;
+      }
+      #logo-trillium {
+        width: 80%;
       }
     }
   }
@@ -719,6 +746,28 @@ footer {
       }
       .insta-item:nth-of-type(1) {
         display: flex;
+      }
+    }
+  }
+
+  #association {
+    width: 65%;
+    grid-template-columns: 1fr 2fr;
+    margin: 0 1rem 1rem auto;
+    align-items: center;
+    p {
+      font-size: 0.9rem;
+      margin: 0;
+      text-align: center;
+    }
+    #logo-wrapper {
+      a {
+        #logo-beadonor {
+          width: 90%;
+        }
+        #logo-trillium {
+          width: 80%;
+        }
       }
     }
   }
@@ -955,6 +1004,27 @@ footer {
       }
       .insta-item:nth-of-type(4) {
         display: flex;
+      }
+    }
+  }
+
+  #association {
+    width: 40%;
+    grid-template-columns: 1fr 2fr;
+    margin: 1rem 1rem 2rem auto;
+    align-items: center;
+    p {
+      font-size: 0.9rem;
+      text-align: right;
+    }
+    #logo-wrapper {
+      a {
+        #logo-beadonor {
+          width: 75%;
+        }
+        #logo-trillium {
+          width: 65%;
+        }
       }
     }
   }
