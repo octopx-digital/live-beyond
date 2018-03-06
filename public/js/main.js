@@ -1,10 +1,12 @@
 import resize from './modules/image_resize';
 import arrows from './modules/event_gallery';
+import instagram from './modules/instagram';
 
 (() => {
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
   var mainBanner = document.querySelector('#main-banner');
+  var instaSec = document.querySelector('#instagram');
   var menuOpen = false;
   var bannerIndex = 0;
 
@@ -63,8 +65,8 @@ import arrows from './modules/event_gallery';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        data.banner.forEach((banner) => {
-          let image = `<img class="banner-photo media-change" src="images/${banner.photo}_large.jpg" alt="${banner.alt}">`;
+        data.banner.forEach(({photo, alt}) => {
+          let image = `<img class="banner-photo media-change" src="images/${photo}_large.jpg" alt="${alt}">`;
           mainBanner.innerHTML += image;
         });
         resize.setImageSize.call(document.querySelectorAll('.media-change'));
@@ -190,6 +192,37 @@ import arrows from './modules/event_gallery';
       });
   }
 
+  function getInstagram() {
+    let instagramWrapper = this;
+    let instagramContent = instagram.instagramContent;
+
+    instagramContent.name.forEach(function(name, index) {
+      let instaItem = document.createElement('div');
+      instaItem.className = 'insta-item';
+      let instaPhoto = document.createElement('img');
+      instaPhoto.src = `images/${instagramContent.photo[index]}_large.jpg`;
+      instaPhoto.alt = instagramContent.name[index];
+      instaPhoto.className = 'insta-photo media-change';
+      instaItem.appendChild(instaPhoto);
+      let instaPost = document.createElement('div');
+      instaPost.className = 'insta-post';
+      let instaName = document.createElement('p');
+      instaName.className = 'insta-name';
+      instaName.innerHTML = instagramContent.name[index];
+      instaPost.appendChild(instaName);
+      let instaUser = document.createElement('p');
+      instaUser.className = 'insta-user';
+      instaUser.innerHTML = instagramContent.username[index];
+      instaPost.appendChild(instaUser);
+      let instaText = document.createElement('p');
+      instaText.className = 'insta-text';
+      instaText.innerHTML = instagramContent.desc[index];
+      instaPost.appendChild(instaText);
+      instaItem.appendChild(instaPost);
+      instagramWrapper.appendChild(instaItem);
+    });
+  }
+
   resize.checkScreenSize.call(window.innerWidth);
   getBanner.call();
   getFacts.call();
@@ -197,6 +230,7 @@ import arrows from './modules/event_gallery';
   getMyths.call();
   getEvents.call();
   getVideo.call();
+  getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
