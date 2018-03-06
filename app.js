@@ -13,6 +13,7 @@ var facts = require('./routes/facts');
 var stats = require('./routes/stats');
 var myths = require('./routes/myths');
 var events = require('./routes/events');
+var video = require('./routes/video');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', facts);
 app.use('/', stats);
 app.use('/', myths);
 app.use('/', events);
+app.use('/', video);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

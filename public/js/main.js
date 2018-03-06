@@ -112,6 +112,28 @@ import instagram from './modules/instagram';
       });
   }
 
+  function getVideo() {
+    // console.log('from getBanner');
+    let url = 'video';
+
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+
+        console.log(data.video[0]);
+        let newData = data.video[0];
+        // data.forEach(() => {
+          let mainVideo = document.querySelector('#main-video');
+          let placeholder = `<img class="media-change" src="images/${newData.placeholder}large.jpg" alt="Main Video">`;
+          mainVideo.innerHTML += placeholder;
+        // })
+
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   function getMyths() {
     // console.log('from getMyths');
     let url = 'myths/getAll';
@@ -207,6 +229,7 @@ import instagram from './modules/instagram';
   getStats.call();
   getMyths.call();
   getEvents.call();
+  getVideo.call();
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('resize', resize.checkScreenSize, false);
