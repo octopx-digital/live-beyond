@@ -1,5 +1,5 @@
 import resize from './modules/image_resize';
-import arrows from './navigation';
+import arrows from './modules/event_gallery';
 
 (() => {
   var header = document.querySelector('header');
@@ -57,7 +57,7 @@ import arrows from './navigation';
   }
 
   function getBanner() {
-    console.log('from getBanner');
+    // console.log('from getBanner');
     let url = 'banner/getAll';
 
     fetch(url)
@@ -82,7 +82,7 @@ import arrows from './navigation';
     fetch(url)
       .then((resp) => resp.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           let factWrapper = document.querySelector('#fact-wrapper');
           data.facts.forEach(({name, description}) => {
             let newFact = `<div id="${name}" class="fact">
@@ -103,7 +103,7 @@ import arrows from './navigation';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch(function(error) {
         console.log(error);
@@ -117,7 +117,17 @@ import arrows from './navigation';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data.myths);
+        let mythsList = document.querySelector('#myths-list');
+        data.myths.forEach(({text, position}) => {
+          if(position < 10){
+            var newPosition = "0"+position;
+          } else {
+            var newPosition = position;
+          }
+          let myth = `<li><span class="coloured">${newPosition}.</span><p>${text}</p></li>`;
+          mythsList.innerHTML += myth;
+        });
       })
       .catch(function(error) {
         console.log(error);
