@@ -1,0 +1,6 @@
+
+@mixin translate($percX, $percY) {
+  -webkit-transform: translate($percX, $percY);
+  -ms-transform: translate($percX, $percY);
+  transform: translate($percX, $percY);
+}

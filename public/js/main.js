@@ -110,6 +110,28 @@ import arrows from './modules/event_gallery';
       });
   }
 
+  function getVideo() {
+    // console.log('from getBanner');
+    let url = 'video';
+
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+
+        console.log(data.video[0]);
+        let newData = data.video[0];
+        // data.forEach(() => {
+          let mainVideo = document.querySelector('#main-video');
+          let placeholder = `<img class="media-change" src="images/${newData.placeholder}large.jpg" alt="Main Video">`;
+          mainVideo.innerHTML += placeholder;
+        // })
+
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   function getMyths() {
     // console.log('from getMyths');
     let url = 'myths/getAll';
@@ -174,6 +196,7 @@ import arrows from './modules/event_gallery';
   getStats.call();
   getMyths.call();
   getEvents.call();
+  getVideo.call();
 
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
