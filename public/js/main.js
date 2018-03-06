@@ -1,5 +1,5 @@
 import resize from './modules/image_resize';
-import arrows from './navigation';
+import arrows from './modules/event_gallery';
 import instagram from './modules/instagram';
 
 (() => {
@@ -59,7 +59,7 @@ import instagram from './modules/instagram';
   }
 
   function getBanner() {
-    console.log('from getBanner');
+    // console.log('from getBanner');
     let url = 'banner/getAll';
 
     fetch(url)
@@ -84,7 +84,7 @@ import instagram from './modules/instagram';
     fetch(url)
       .then((resp) => resp.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           let factWrapper = document.querySelector('#fact-wrapper');
           data.facts.forEach(({name, description}) => {
             let newFact = `<div id="${name}" class="fact">
@@ -105,7 +105,7 @@ import instagram from './modules/instagram';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch(function(error) {
         console.log(error);
@@ -119,7 +119,17 @@ import instagram from './modules/instagram';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data.myths);
+        let mythsList = document.querySelector('#myths-list');
+        data.myths.forEach(({text, position}) => {
+          if(position < 10){
+            var newPosition = "0"+position;
+          } else {
+            var newPosition = position;
+          }
+          let myth = `<li><span class="coloured">${newPosition}.</span><p>${text}</p></li>`;
+          mythsList.innerHTML += myth;
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -172,17 +182,20 @@ import instagram from './modules/instagram';
       instaPhoto.alt = instagramContent.name[index];
       instaPhoto.className = 'insta-photo media-change';
       instaItem.appendChild(instaPhoto);
+      let instaPost = document.createElement('div');
+      instaPost.className = 'insta-post';
       let instaName = document.createElement('p');
       instaName.className = 'insta-name';
       instaName.innerHTML = instagramContent.name[index];
-      instaItem.appendChild(instaName);
+      instaPost.appendChild(instaName);
       let instaUser = document.createElement('p');
       instaUser.className = 'insta-user';
       instaUser.innerHTML = instagramContent.username[index];
-      instaItem.appendChild(instaUser);
-      let instaPost = document.createElement('p');
-      instaPost.className = 'insta-post';
-      instaPost.innerHTML = instagramContent.desc[index];
+      instaPost.appendChild(instaUser);
+      let instaText = document.createElement('p');
+      instaText.className = 'insta-text';
+      instaText.innerHTML = instagramContent.desc[index];
+      instaPost.appendChild(instaText);
       instaItem.appendChild(instaPost);
       instagramWrapper.appendChild(instaItem);
     });

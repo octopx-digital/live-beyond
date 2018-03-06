@@ -38,8 +38,3 @@ export default function eventArrows(){
     }
   }
 }
-
-// 
-// module.exports = {
-//   eventArrows: arrows
-// }

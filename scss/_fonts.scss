@@ -64,6 +64,14 @@
 
 @font-face {
     font-family: 'Kanit';
+    src: url('../fonts/Kanit-LightItalic.woff2') format('woff2'),
+        url('../fonts/Kanit-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Kanit';
     src: url('../fonts/Kanit-Black.woff2') format('woff2'),
         url('../fonts/Kanit-Black.woff') format('woff');
     font-weight: 900;
