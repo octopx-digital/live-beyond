@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2018 at 07:20 AM
+-- Generation Time: Mar 15, 2018 at 06:10 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -96,9 +96,9 @@ CREATE TABLE `facts` (
 --
 
 INSERT INTO `facts` (`id`, `name`, `description`, `position`) VALUES
-(1, 'donor_save', '<span class=\"number\">1</span> <span class=\"bigger\">donor</span> can save <span class=\"number\">8</span> <span class=\"bigger\">lives</span>', 1),
-(2, 'people_queue', '<span class=\"number\">1,500</span> people need a <span class=\"bigger\">transplant</span> in Ontario', 2),
-(3, 'registered_rate', 'only <span class=\"number\">32%</span> of Ontarians are <span class=\"bigger\">registered</span> as donors', 3);
+(1, 'donor_save', '<span class=\"number\">1</span> <span class=\"bigger\">donor</span> <br>can save <br><span class=\"number\">8</span> <span class=\"bigger\">lives</span>', 1),
+(2, 'people_queue', '<span class=\"number\">1,500</span> <br>people need a <span class=\"bigger\">transplant</span> <br>in Ontario', 2),
+(3, 'registered_rate', 'only <br><span class=\"number\">32%</span> <br>of Ontarians are <span class=\"bigger\">registered</span> <br>as donors', 3);
 
 -- --------------------------------------------------------
 
@@ -134,8 +134,8 @@ CREATE TABLE `stats` (
   `organ_title` varchar(100) NOT NULL,
   `description` text,
   `icon` varchar(150) NOT NULL,
-  `success` mediumint(8) UNSIGNED NOT NULL,
-  `queue` mediumint(8) UNSIGNED NOT NULL,
+  `success` varchar(20) NOT NULL,
+  `queue` varchar(20) NOT NULL,
   `position` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -144,11 +144,11 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `organ_title`, `description`, `icon`, `success`, `queue`, `position`) VALUES
-(1, 'lungs', NULL, 'organ_lungs', 166, 55, 1),
-(2, 'kidneys', NULL, 'organ_kidneys', 714, 1168, 2),
-(3, 'heart', NULL, 'organ_heart', 93, 35, 3),
-(4, 'liver', NULL, 'organ_liver', 258, 233, 4),
-(5, 'pancreas', NULL, 'organ_pancreas', 25, 10, 5);
+(1, 'lungs', NULL, 'organ_lungs', '166', '55', 1),
+(2, 'kidneys', NULL, 'organ_kidneys', '714', '1,168', 2),
+(3, 'heart', NULL, 'organ_heart', '93', '35', 3),
+(4, 'liver', NULL, 'organ_liver', '258', '233', 4),
+(5, 'pancreas', NULL, 'organ_pancreas', '25', '10', 5);
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,7 @@ CREATE TABLE `video` (
 --
 
 INSERT INTO `video` (`id`, `video`, `placeholder`) VALUES
-(1, NULL, 'video_cover');
+(1, 'live_beyond', 'video_cover');
 
 --
 -- Indexes for dumped tables
