@@ -1,6 +1,7 @@
 import resize from './modules/image_resize';
 import arrows from './modules/event_gallery';
 import instagram from './modules/instagram';
+import videoCtrl from './modules/videocontrols';
 
 (() => {
   var header = document.querySelector('header');
@@ -122,25 +123,48 @@ import instagram from './modules/instagram';
   }
 
   function getVideo() {
-    // console.log('from getBanner');
     let url = 'video';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-
-        console.log(data.video[0]);
+        // console.log(data.video[0]);
         let newData = data.video[0];
-        // data.forEach(() => {
-          let mainVideo = document.querySelector('#main-video');
-          let placeholder = `<img class="media-change" src="images/${newData.placeholder}_large.jpg" alt="Main Video">`;
-          mainVideo.innerHTML += placeholder;
-        // })
-
+          let videoWrapper = document.querySelector('#video-wrapper');
+          let placeholder = `<video id="video" class="video-change" poster="images/${newData.placeholder}_large.jpg">
+              <source src="videos/${newData.video}.mp4"></source></video>
+              <div id="over-video">
+                <div id="video-btn">
+                  <i class="ion-play" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div id="video-controls">
+                    <div id="seek-bar">
+                      <span></span>
+                    </div>
+                  <div id="button-wrapper" class="clearfix">
+                      <div id="play-btn">
+                        <i class="ion-play video-ctrl-bt" aria-hidden="true"></i>
+                      </div>
+                      <p id="video-time">0:00</p>
+                      <div id="full-btn">
+                        <i class="ion-arrow-expand video-ctrl-bt" aria-hidden="true"></i>
+                      </div>
+                      <div id="volume-bar">
+                        <div id="volume-bg"></div>
+                        <div id="volume-fg"></div>
+                      </div>
+                      <div id="volume-btn">
+                        <i class="ion-android-volume-up video-ctrl-bt" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>`;
+          videoWrapper.innerHTML = placeholder;
       })
       .catch(function(error) {
         console.log(error);
       });
+      // videoCtrl();
   }
 
   function getMyths() {
@@ -241,6 +265,8 @@ import instagram from './modules/instagram';
   getVideo.call();
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
+  window.addEventListener('load', videoCtrl, false);
+  window.addEventListener('resize', arrows, false);
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
