@@ -6,6 +6,7 @@ import instagram from './modules/instagram';
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
   var mainBanner = document.querySelector('#main-banner');
+  var statsSec = document.querySelector('#stats');
   var instaSec = document.querySelector('#instagram');
   var menuOpen = false;
   var bannerIndex = 0;
@@ -99,13 +100,21 @@ import instagram from './modules/instagram';
   }
 
   function getStats() {
-    // console.log('from getStats');
     let url = 'stats/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
+        let statsWrapper = statsSec.querySelector('#stats-wrapper > ul');
+        data.stats.forEach(stat => {
+          let item = `<li><div class="stats-organ"><div class="icon-wrapper"><img src="images/${stat.icon}.svg" alt="${stat.organ_title} icon"></div><p class="organ-name">${stat.organ_title}</p></div><div class="organ-success"><p>${stat.success}</p></div><div class="organ-queue"><p>${stat.queue}</p></div></li>`;
+          // iconsList.innerHTML += icon;
+          // let success = `<li><p class="organ-success">${stat.success}</p></li>`;
+          // successList.innerHTML += success;
+          // let queue = `<li><p class="organ-queue">${stat.queue}</p></li>`;
+          statsWrapper.innerHTML += item;
+        });
       })
       .catch(function(error) {
         console.log(error);

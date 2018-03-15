@@ -28,6 +28,7 @@ header, footer {
   min-width: 320px;
   max-width: 1440px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 header{
@@ -144,6 +145,99 @@ header.openmenu {
         }
         .bigger {
           font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}
+
+#stats {
+  background: $orchid;
+  background: linear-gradient(to bottom, $orchid, $purple);
+  margin-top: 7rem;
+  #stats-wrapper {
+    ul {
+      display: grid;
+      grid-template-columns:  1fr;
+      li {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+        align-items: center;
+        font-family: $fontText;
+        .stats-organ {
+          justify-content: center;
+          padding: 1rem 0;
+          .icon-wrapper {
+            display: inline-block;
+            width: 21.5vw;
+            height: 21.5vw;
+            line-height: 21.5vw;
+            background-color: $purple;
+            border-radius: 100%;
+            border: 1.5vw solid #ffffff;;
+
+            img {
+              vertical-align: middle;
+              width: 60%;
+              height: 60%;
+            }
+          }
+          .organ-name {
+            text-transform: uppercase;
+            color: #ffffff;
+            font-size: 4.5vw;
+            font-weight: 500;
+            margin-top: 0.4rem;
+          }
+        }
+        .organ-success,
+        .organ-queue {
+          position: relative;
+          display: flex;
+          width: 100%;
+          height: 100%;
+          font-family: $fontFacts;
+          font-size: 7.5vw;
+          align-items: center;
+          justify-content: center;
+        }
+        .organ-success {
+          color: $yellow;
+        }
+        .organ-queue {
+          color: $pink;
+          border-left: 0.2rem solid #ffffff;
+        }
+      }
+      li:first-of-type {
+        .stats-organ {
+          padding-top: 2.5rem;
+        }
+        .organ-success:before,
+        .organ-queue:before {
+          position: absolute;
+          top: -25%;
+          width: 90%;
+          content: "Successful transplants in Ontario 2017";
+          font-family: $fontText;
+          font-size: 3.5vw;
+          color: #ffffff;
+          background-color: $yellow;
+          text-transform: uppercase;
+          text-shadow: 1px 1px 3px #000000;
+          line-height: 5vw;
+          padding: 0.5rem 0;
+          box-shadow: 2px 3px 8px -2px #000000;
+        }
+        .organ-queue:before {
+          content: "People still waiting for a transplant";
+          background-color: $pink;
+        }
+      }
+      li:last-of-type {
+        .stats-organ {
+          padding-bottom: 2.5rem;
         }
       }
     }
@@ -846,53 +940,118 @@ footer {
   #facts {
     margin: 4rem 0;
     h2 {
-      // @extend .text;
-      // font-weight: 500;
       font-size: 1.8rem;
-      // color: $purple;
-      // text-align: center;
-      // text-transform: uppercase;
       margin-bottom: 3rem;
     }
     #fact-wrapper {
-      // display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-row-gap: 0;
       grid-column-gap: 2rem;
       margin: 0 2rem;
-      // .fact {
-      //   // display: flex;
-      //   // justify-self: center;
-      //   // justify-content: center;
-      //   // align-items: center;
-      //   // width: 90%;
-      //   // height: 100%;
-      //   // max-width: 200px;
-      //   // background: $purple;
-      //   // background: linear-gradient(to bottom, $pink, $purple);
-      //   // border: none;
-      //   // border-radius: 3px;
-      //   // box-shadow: 0 1rem 1rem -1rem #000000;
-      //   // .fact-desc {
-      //   //   font-family: $fontFacts;
-      //   //   font-weight: bold;
-      //   //   font-size: 1.2rem;
-      //   //   color: #ffffff;
-      //   //   margin: 0.5rem 0.5rem;
-      //   //   text-align: center;
-      //   //   line-height: 2rem;
-      //   //   .number {
-      //   //     font-size: 2.8rem;
-      //   //     color: $yellow;
-      //   //   }
-      //   //   .bigger {
-      //   //     font-size: 1.8rem;
-      //   //   }
-      //   // }
-      // }
     }
   }
 
+  #stats {
+    // background: $orchid;
+    // background: linear-gradient(to bottom, $orchid, $purple);
+    margin-top: 7rem;
+    #stats-wrapper {
+      ul {
+        // display: grid;
+        grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+        li {
+          // display: grid;
+          grid-template-columns: 1fr;
+          // text-align: center;
+          // align-items: center;
+          // font-family: $fontText;
+          margin-top: -8vw;
+          .stats-organ {
+            // justify-content: center;
+            padding: 0;
+            margin-bottom: 5rem;
+            .icon-wrapper {
+              // display: inline-block;
+              width: 12vw;
+              height: 12vw;
+              line-height: 12vw;
+              // background-color: $purple;
+              // border-radius: 100%;
+              border: 1vw solid #ffffff;;
+
+              // img {
+              //   // vertical-align: middle;
+              //   // width: 60%;
+              //   // height: 60%;
+              // }
+            }
+            .organ-name {
+              // text-transform: uppercase;
+              // color: #ffffff;
+              font-size: 2.5vw;
+              // font-weight: 500;
+              margin-top: 1rem;
+            }
+          }
+          .organ-success,
+          .organ-queue {
+            // position: relative;
+            // display: flex;
+            // width: 100%;
+            // height: 100%;
+            // font-family: $fontFacts;
+            font-size: 4.5vw;
+            // align-items: center;
+            // justify-content: center;
+            // margin-top: 2rem;
+            // margin-bottom: 2rem;
+            padding: 5rem 0;
+          }
+          // .organ-success {
+          //   color: $yellow;
+          // }
+          .organ-queue {
+            // color: $pink;
+            border-left: none;
+            // margin-top: 2rem;
+          }
+        }
+        li:first-of-type {
+          .stats-organ {
+            padding-top: 0;
+          }
+          .organ-success:before,
+          .organ-queue:before {
+            // position: absolute;
+            top: 20%;
+            left: 100%;
+            width: 300%;
+            content: "Successful organ transplants happened in Ontario in 2017";
+            // font-family: $fontText;
+            font-size: 1.8vw;
+            // color: #ffffff;
+            // background-color: $yellow;
+            // text-transform: uppercase;
+            // text-shadow: 1px 1px 3px #000000;
+            line-height: normal;
+            padding: 1rem 0;
+            // border-top: 0.25rem solid $yellow;
+            // margin-top: -50%;
+            // box-shadow: 2px 3px 8px -2px #000000;
+          }
+          .organ-queue:before {
+            content: "People still waiting for a transplant";
+            background-color: $pink;
+          }
+        }
+        li:last-of-type {
+          .stats-organ {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
 
 
 // #main-video{
@@ -1062,7 +1221,7 @@ footer {
     }
 
     .banner-tagline {
-      bottom: 25%;
+      bottom: 17%;
       left: 5%;
       line-height: normal;
       p {
