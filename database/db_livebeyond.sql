@@ -1,13 +1,8 @@
 -- MySQL dump 10.16  Distrib 10.2.12-MariaDB, for Linux (x86_64)
 --
--- Host: localhost
--- Generation Time: Mar 15, 2018 at 06:10 PM
--- Server version: 5.6.38
--- PHP Version: 7.2.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: db_livebeyond
+-- ------------------------------------------------------
+-- Server version	10.2.12-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -100,12 +95,11 @@ CREATE TABLE `facts` (
 -- Dumping data for table `facts`
 --
 
-
 LOCK TABLES `facts` WRITE;
 /*!40000 ALTER TABLE `facts` DISABLE KEYS */;
 INSERT INTO `facts` VALUES (1,'donor_save','<span class=\"number\">1</span> <span class=\"bigger\">donor</span> <br>can save <br><span class=\"number\">8</span> <span class=\"bigger\">lives</span>',1),(2,'people_queue','<span class=\"number\">1,500</span> <br>people need a <span class=\"bigger\">transplant</span> <br>in Ontario',2),(3,'registered_rate','only <br><span class=\"number\">32%</span> <br>of Ontarians are <span class=\"bigger\">registered</span> <br>as donors',3);
 /*!40000 ALTER TABLE `facts` ENABLE KEYS */;
-
+UNLOCK TABLES;
 
 --
 -- Table structure for table `myths`
@@ -183,7 +177,7 @@ CREATE TABLE `video` (
 
 LOCK TABLES `video` WRITE;
 /*!40000 ALTER TABLE `video` DISABLE KEYS */;
-INSERT INTO `video` VALUES (1,NULL,'video_cover');
+INSERT INTO `video` VALUES (1,'live_beyond','video_cover');
 /*!40000 ALTER TABLE `video` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-14 22:48:21
+-- Dump completed on 2018-03-15 17:04:58

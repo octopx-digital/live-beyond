@@ -564,7 +564,7 @@ footer {
       background-color: rgba(153, 153, 153, 0.5);
       outline: 0;
       span {
-        background-color: $pink;
+        background-color: $magenta;
         position: absolute;
         top: 0;
         left: 0;
@@ -1287,30 +1287,46 @@ footer {
     }
   }
 
-  #video-cont{
-    width: 100%;
-    margin: 100px 0 0 0;
-    // #main-video{
-    //   width: 80%;
-    // }
-    #video-wrapper {
-        width: 80%;
+#video-cont{
+  #video-wrapper {
+    line-height: 0;
+    width: 80%;
+      #over-video {
+        #video-btn {
+          width: 6rem;
+          height: 6rem;
+          max-width: 18rem;
+          i {
+            font-size: 4rem;
+          }
+        }
+      }
+    #video-controls {
+      #video-time{
+        line-height: 1.1rem;
+      }
+      #button-wrapper {
+        #play-btn,
+        #full-btn,
+        #volume-btn {
+          .video-ctrl-bt {
+            font-size: 1.4rem;
+          }
+        }
+        #full-btn {
+          width: 3rem;
+        }
+        #volume-btn {
+          width: 2.5rem;
+        }
+        #volume-bar {
+          width: 5rem;
+          height: 2rem;
+          }
+        }
+      }
     }
-
 }
-  // #main-video{
-  //   // .video-header{
-  //     background: url('images/movie-cover.jpg') no-repeat; // TEMPORARILY HARD CODED
-  //     background-color: #666;
-  //     background-blend-mode: multiply;
-  //     img {
-  //       width: 50%;
-  //     }
-  //     // p {
-  //     //   padding: 50px 200px;
-  //     // }
-  //   // }
-  // }
 
   #myths{
     h2{
