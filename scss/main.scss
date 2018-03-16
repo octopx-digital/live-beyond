@@ -24,6 +24,7 @@ header, footer {
 }
 
 #container{
+  position: relative;
   width: 100%;
   min-width: 320px;
   max-width: 1440px;
@@ -33,13 +34,12 @@ header, footer {
 
 header{
   width: 100%;
+  min-width: inherit;
+  max-width: inherit;
+  margin: 0 auto;
   height: 4rem;
   position: fixed;
-  top: 0;
-  left: 0;
-  // transition: height 0.3s 0.5s ease-in-out;
   z-index: 100;
-  // opacity: 1;
   div {
     background-color: $purple;
     height: 4rem;
@@ -102,7 +102,7 @@ header.openmenu {
 }
 
 #facts {
-  margin: 2rem 0;
+  padding: 5rem 0  2rem 0;
   h2 {
     @extend .text;
     font-weight: 500;
@@ -152,10 +152,10 @@ header.openmenu {
 }
 
 #stats {
-  background: $orchid;
-  background: linear-gradient(to bottom, $orchid, $purple);
-  margin-top: 7rem;
+  padding-top: 7rem;
   #stats-wrapper {
+    background: $orchid;
+    background: linear-gradient(to bottom, $orchid, $purple);
     ul {
       display: grid;
       grid-template-columns:  1fr;
@@ -245,8 +245,7 @@ header.openmenu {
 }
 
 #events{
-  margin: 50px 0 0 0;
-  // width: 100%;
+  padding: 4rem 0 0 0;
   .event-header{
     text-align: center;
           padding: 10px;
@@ -418,7 +417,6 @@ footer {
 #main-banner {
   overflow: hidden;
   width: 100%;
-  // height: 100vh;
   position: relative;
   color: $pinkLight;
 
@@ -460,7 +458,7 @@ footer {
 
 #video-cont{
   width: 100%;
-  margin: 100px 0 0 0;
+  padding: 8rem 0 0 0;
 #video-wrapper {
     position: relative;
     width: 100%;
@@ -657,11 +655,8 @@ footer {
   }
 }
 
-
-
-
 #myths{
-  margin: 50px 0 0 0;
+  padding: 4rem 0 0 0;
   width: 100%;
   text-align: center;
   h2{
@@ -733,7 +728,7 @@ footer {
 }
 
 #instagram {
-  margin: 3rem 0 2rem 0;
+  padding: 4rem 0 2rem 0;
   width: 100%;
   overflow: hidden;
   h2 {
@@ -754,15 +749,12 @@ footer {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    // grid-column-gap: 1px;
-    // background-color: #cccccc;
 
     .insta-item {
       display: none;
       flex-direction: column;
       border-top: 15px solid $magenta;
       border-bottom: 15px solid $magenta;
-      // border-left: 1px solid #cccccc;
       border-right: 1px solid #cccccc;
       .insta-photo {
         width: 100%;
@@ -917,7 +909,7 @@ footer {
   }
 
   #facts {
-    margin: 4rem 0;
+    padding: 8rem 0 0 0;
     h2 {
       font-size: 1.8rem;
       margin-bottom: 3rem;
@@ -931,7 +923,7 @@ footer {
   }
 
   #stats {
-    margin-top: 7rem;
+    padding: 12rem 0 0 0;
     #stats-wrapper {
       ul {
         grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
@@ -1004,6 +996,9 @@ footer {
     }
   }
 
+  #video-cont {
+    padding: 9rem 0 0 0;
+  }
 
 // #main-video{
 //   .video-header{
@@ -1020,6 +1015,7 @@ footer {
 // }
 
   #myths{
+    padding: 6rem 0 0 0;
     .myths-container{
       width: 60%;
       margin: 0 auto;
@@ -1030,6 +1026,7 @@ footer {
   }
 
   #events{
+    padding: 6rem 0 0 0;
     #event-caroussel{
       .events-holder{
         position: relative;
@@ -1056,7 +1053,7 @@ footer {
   }
 
   #instagram {
-    margin: 3rem 0;
+    padding: 6rem 0 3rem 0;
     h2 {
       font-size: 2rem;
     }
@@ -1082,7 +1079,6 @@ footer {
             margin-top: 1rem;
           }
           &:after {
-
             bottom: -2rem;
             font-size: 1rem;
           }
@@ -1188,7 +1184,7 @@ footer {
   }
 
   #facts {
-    margin: 4rem 0;
+    padding: 12rem 0 0 0;
     h2 {
       font-size: 3rem;
       margin-bottom: 3rem;
@@ -1218,9 +1214,9 @@ footer {
   }
 
   #stats {
-    margin-top: 12rem;
+    padding: 16rem 0 0 0;
     #stats-wrapper {
-      margin: 0 2rem;
+      padding: 0 2rem;
       ul {
         li {
           margin-top: -6vw;
@@ -1373,7 +1369,7 @@ footer {
   }
 
   #instagram {
-    margin: 3rem 0;
+    padding: 7rem 0 3rem 0;
     h2 {
       font-size: 2rem;
     }
@@ -1446,6 +1442,45 @@ footer {
       ul {
         li {
           margin: 0 1.3rem;
+        }
+      }
+    }
+  }
+  #stats {
+    // padding: 16rem 0 0 0;
+    #stats-wrapper {
+      // margin: 0 2rem;
+      ul {
+        li {
+          margin-top: -5.4rem;
+          .stats-organ {
+            // margin-bottom: 8rem;
+            .icon-wrapper {
+              width: 9rem;
+              height: 9rem;
+              line-height: 9rem;
+              border: 0.72rem solid #ffffff;
+            }
+            .organ-name {
+              font-size: 1.8rem;
+              // margin-top: 2rem;
+            }
+          }
+          // .organ-success,
+          // .organ-queue {
+          //   padding: 7rem 0;
+          // }
+        }
+        li:first-of-type {
+          .organ-success:before,
+          .organ-queue:before {
+            // top: 17%;
+            font-size: 1.44rem;
+          }
+          // .organ-success:after,
+          // .organ-queue:after {
+          //   top: 22.5%;
+          // }
         }
       }
     }

@@ -4,10 +4,16 @@ import instagram from './modules/instagram';
 import videoCtrl from './modules/videocontrols';
 
 (() => {
+  var bodyarea = document.querySelector('body');
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
+  var menuBtns = header.querySelectorAll('.section-link');
   var mainBanner = document.querySelector('#main-banner');
+  var factsSec = document.querySelector('#facts');
   var statsSec = document.querySelector('#stats');
+  var mythsSec = document.querySelector('#myths');
+  var videoSec = document.querySelector('#video-cont');
+  var eventsSec = document.querySelector('#events');
   var instaSec = document.querySelector('#instagram');
   var menuOpen = false;
   var bannerIndex = 0;
@@ -39,6 +45,40 @@ import videoCtrl from './modules/videocontrols';
     }
   }
 
+  // function to scroll to selected area when menu clicked
+  function scrollSection(evt) {
+    evt.preventDefault();
+    // console.log(this.id);
+    console.log(evt.currentTarget.id);
+    menuAnimation();
+
+    switch(evt.currentTarget.id) {
+      case 'header-logo':
+        bodyarea.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-facts':
+        factsSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-stats':
+        statsSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-myths':
+        mythsSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-video':
+        videoSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-events':
+        eventsSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'menu-insta':
+        instaSec.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      default:
+        break;
+    }
+  }
+
   function bannerAnimation() {
     let photos = mainBanner.querySelectorAll('.banner-photo');
 
@@ -61,7 +101,6 @@ import videoCtrl from './modules/videocontrols';
   }
 
   function getBanner() {
-    // console.log('from getBanner');
     let url = 'banner/getAll';
 
     fetch(url)
@@ -80,13 +119,11 @@ import videoCtrl from './modules/videocontrols';
   }
 
   function getFacts() {
-    // console.log('from getFacts');
     let url = 'facts/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
         .then((data) => {
-          // console.log(data);
           let factWrapper = document.querySelector('#fact-wrapper');
           data.facts.forEach(({name, description}) => {
             let newFact = `<div id="${name}" class="fact">
@@ -106,14 +143,9 @@ import videoCtrl from './modules/videocontrols';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         let statsWrapper = statsSec.querySelector('#stats-wrapper > ul');
         data.stats.forEach(stat => {
           let item = `<li><div class="stats-organ"><div class="icon-wrapper"><img src="images/${stat.icon}.svg" alt="${stat.organ_title} icon"></div><p class="organ-name">${stat.organ_title}</p></div><div class="organ-success"><p>${stat.success}</p></div><div class="organ-queue"><p>${stat.queue}</p></div></li>`;
-          // iconsList.innerHTML += icon;
-          // let success = `<li><p class="organ-success">${stat.success}</p></li>`;
-          // successList.innerHTML += success;
-          // let queue = `<li><p class="organ-queue">${stat.queue}</p></li>`;
           statsWrapper.innerHTML += item;
         });
       })
@@ -168,13 +200,11 @@ import videoCtrl from './modules/videocontrols';
   }
 
   function getMyths() {
-    // console.log('from getMyths');
     let url = 'myths/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data.myths);
         let mythsList = document.querySelector('#myths-list');
         data.myths.forEach(({text, position}) => {
           if(position < 10){
@@ -192,13 +222,11 @@ import videoCtrl from './modules/videocontrols';
   }
 
   function getEvents() {
-    // console.log('from getEvents');
     let url = 'events/getAll';
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data.events);
         let container = document.querySelector('#events-container');
         data.events.forEach(({title, date, time, address, partner, logo, link}) => {
           let tern = "";
@@ -271,4 +299,7 @@ import videoCtrl from './modules/videocontrols';
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
   hambMenu.addEventListener('click', menuAnimation, false);
+  menuBtns.forEach((button) => {
+    button.addEventListener('click', scrollSection, false);
+  });
 })();
