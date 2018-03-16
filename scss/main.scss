@@ -460,6 +460,7 @@ footer {
   width: 100%;
   padding: 8rem 0 0 0;
 #video-wrapper {
+    line-height: 0;
     position: relative;
     width: 100%;
     margin: 0 auto;
@@ -550,6 +551,9 @@ footer {
     align-items: center;
     z-index: 7;
     opacity: 1;
+    #video-time{
+      line-height: 0.8rem;
+    }
     #seek-bar {
       position: absolute;
       top: -0.85rem;
@@ -1285,7 +1289,6 @@ footer {
 
 #video-cont{
   #video-wrapper {
-    line-height: 0;
     width: 80%;
       #over-video {
         #video-btn {
@@ -1298,9 +1301,7 @@ footer {
         }
       }
     #video-controls {
-      #video-time{
-        line-height: 1.1rem;
-      }
+
       #button-wrapper {
         #play-btn,
         #full-btn,
