@@ -5,7 +5,7 @@ var router = express.Router();
 // get all fact elements
 router.get('/video', (req, res) => {
   console.log(req.params.id);
-  let getVideo = `SELECT placeholder FROM video`;
+  let getVideo = `SELECT * FROM video`;
   connect.query(getVideo, (err, result) => {
     if(err) {
       throw err;
