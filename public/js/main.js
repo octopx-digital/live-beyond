@@ -165,38 +165,22 @@ import videoCtrl from './modules/videocontrols';
           let videoWrapper = document.querySelector('#video-wrapper');
           let placeholder = `<video id="video" class="video-change" poster="images/${newData.placeholder}_large.jpg">
               <source src="videos/${newData.video}.mp4"></source></video>
-              <div id="over-video">
-                <div id="video-btn">
+              <div id="over-video"><div id="video-btn">
                   <i class="ion-play" aria-hidden="true"></i>
-                </div>
-              </div>
-              <div id="video-controls">
-                    <div id="seek-bar">
-                      <span></span>
-                    </div>
+                </div></div><div id="video-controls">
+                    <div id="seek-bar"><span></span></div>
                   <div id="button-wrapper" class="clearfix">
-                      <div id="play-btn">
-                        <i class="ion-play video-ctrl-bt" aria-hidden="true"></i>
-                      </div>
-                      <p id="video-time">0:00</p>
-                      <div id="full-btn">
-                        <i class="ion-arrow-expand video-ctrl-bt" aria-hidden="true"></i>
-                      </div>
-                      <div id="volume-bar">
-                        <div id="volume-bg"></div>
-                        <div id="volume-fg"></div>
-                      </div>
-                      <div id="volume-btn">
-                        <i class="ion-android-volume-up video-ctrl-bt" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                  </div>`;
+                      <div id="play-btn"><i class="ion-play video-ctrl-bt" aria-hidden="true"></i></div>
+                      <p id="video-time">0:00</p><div id="full-btn">
+                      <i class="ion-arrow-expand video-ctrl-bt" aria-hidden="true"></i>
+                      </div><div id="volume-bar"><div id="volume-bg"></div><div id="volume-fg"></div></div><div id="volume-btn">
+                        <i class="ion-android-volume-up video-ctrl-bt" aria-hidden="true"></i></div></div></div>`;
           videoWrapper.innerHTML = placeholder;
+          resize.setVideoSize.call(document.querySelectorAll('.video-change'));
       })
       .catch(function(error) {
         console.log(error);
       });
-      // videoCtrl();
   }
 
   function getMyths() {

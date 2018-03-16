@@ -27,12 +27,28 @@ function setImageSize() {
   curSize = screensize;
 }
 
+//set videos size (small, medium or large) on load
+function setVideoSize() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].poster = this[i].poster.replace('large', screensize);
+    var vidsource = this[i].querySelectorAll('source');
+    for (let j = 0; j < vidsource.length; j++) {
+      vidsource[j].src = vidsource[j].src.replace('large', screensize);
+    }
+  }
+  curSize = screensize;
+}
+
 // change images and videos size (small, medium or large) on screen resize
 function changeImageSize() {
   if (curSize !== screensize) {
     var img = document.querySelectorAll('.media-change');
     for (let i = 0; i < img.length; i++) {
       img[i].src = img[i].src.replace(curSize, screensize);
+    }
+    var vid = document.querySelectorAll('.video-change');
+    for (let i = 0; i < vid.length; i++) {
+      vid[i].poster = vid[i].poster.replace(curSize, screensize);
     }
     curSize = screensize;
   }
@@ -41,5 +57,6 @@ function changeImageSize() {
 module.exports = {
   checkScreenSize: checkScreenSize,
   setImageSize: setImageSize,
-  changeImageSize: changeImageSize
+  changeImageSize: changeImageSize,
+  setVideoSize: setVideoSize
 }
