@@ -7,7 +7,7 @@ import videoCtrl from './modules/videocontrols';
   var bodyarea = document.querySelector('body');
   var header = document.querySelector('header');
   var hambMenu = header.querySelector('#hamburger-menu');
-  var menuBtns = header.querySelectorAll('.section-link');
+  var menuBtns = document.querySelectorAll('.section-link');
   var mainBanner = document.querySelector('#main-banner');
   var factsSec = document.querySelector('#facts');
   var statsSec = document.querySelector('#stats');
@@ -48,12 +48,13 @@ import videoCtrl from './modules/videocontrols';
   // function to scroll to selected area when menu clicked
   function scrollSection(evt) {
     evt.preventDefault();
-    // console.log(this.id);
-    console.log(evt.currentTarget.id);
     menuAnimation();
 
     switch(evt.currentTarget.id) {
       case 'header-logo':
+        bodyarea.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
+        break;
+      case 'footer-logo':
         bodyarea.scrollIntoView({block: 'start', inline: 'start', behavior: 'smooth'});
         break;
       case 'menu-facts':
@@ -160,7 +161,6 @@ import videoCtrl from './modules/videocontrols';
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data.video[0]);
         let newData = data.video[0];
           let videoWrapper = document.querySelector('#video-wrapper');
           let placeholder = `<video id="video" class="video-change" poster="images/${newData.placeholder}_large.jpg">
