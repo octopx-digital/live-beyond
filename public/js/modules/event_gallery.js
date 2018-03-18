@@ -19,7 +19,10 @@ export default function eventArrows(){
   toRight.addEventListener('click', moveForward, false);
 
   let moveSlide = function (value) {
+    console.log("thumbWidth: "+thumbWidth);
+      console.log("thumb: "+thumb);
       leftPosition += value * thumb;
+      console.log("new position: "+leftPosition);
       events.style.left = leftPosition + 'px';
   };
   function moveBack(){

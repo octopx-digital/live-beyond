@@ -207,11 +207,12 @@ import videoCtrl from './modules/videocontrols';
 
   function getEvents() {
     let url = 'events/getAll';
+    var container = document.querySelector('#events-container');
+    container.innerHTML = "";
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        let container = document.querySelector('#events-container');
         data.events.forEach(({title, date, time, address, partner, logo, link}) => {
           let tern = "";
           if(time != null){
