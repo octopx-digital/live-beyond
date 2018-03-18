@@ -3,8 +3,7 @@ var connect = require('../utils/sqlConnect');
 var router = express.Router();
 
 // get all fact elements
-router.get('/facts/getAll', (req, res) => {
-  console.log(req.params.id);
+router.get('/getAll', (req, res) => {
   let getFacts = `SELECT * FROM facts ORDER BY position`;
   connect.query(getFacts, (err, result) => {
     if(err) {
@@ -12,8 +11,6 @@ router.get('/facts/getAll', (req, res) => {
       console.log(err);
     }
     else {
-      // console.log(result);
-      //return result as json
       res.json({
         facts: result
       });
@@ -21,20 +18,43 @@ router.get('/facts/getAll', (req, res) => {
   });
 });
 
-// router.delete('api/:id', (req, res) => {
-//   console.log('hit to delete route');
-//
-//   connect.query(`DELETE FROM mainmodel WHERE model = "${req.params.id}"`, (err, result) => {
-//     if(err) {
-//       throw err;
-//       console.log(err);
-//     }
-//     else {
-//       console.log(result);
-//       //return result as json
-//       res.json(result);
-//     }
-//   });
-// })
+router.post('/add', (req, res) => {
+  let insert = `INSERT INTO facts (name, description, position) VALUE ("${req.body.name}", "${req.body.description}", ${req.body.position});`;
+  connect.query(insert, (err, data) => {
+    if(err) {
+      throw err;
+    }
+    else {
+      //if success, redirect to admin page
+      return res.redirect('/admin');
+    }
+  });
+});
+
+router.post('/edit/:id', (req, res) => {
+  let update = `UPDATE facts SET name = "${req.body.name}", description = "${req.body.description}", position = ${req.body.position} WHERE id = ${req.params.id};`;
+  connect.query(update, (err, data) => {
+    if(err) {
+      throw err;
+    }
+    else {
+      //if success, redirect to admin page
+      return res.redirect('/admin');
+    }
+  });
+});
+
+router.delete('/delete/:id', (req, res) => {
+  let remove = `DELETE FROM facts WHERE id = "${req.params.id}"`;
+  connect.query(remove, (err, result) => {
+    if(err) {
+      throw err;
+      console.log(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+});
 
 module.exports = router;
