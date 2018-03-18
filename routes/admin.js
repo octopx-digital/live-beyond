@@ -26,7 +26,8 @@ router.get('/banner', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -43,7 +44,8 @@ router.get('/banner/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -87,7 +89,8 @@ router.get('/events', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -104,7 +107,8 @@ router.get('/events/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -148,7 +152,8 @@ router.get('/facts', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -165,7 +170,8 @@ router.get('/facts/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -209,7 +215,8 @@ router.get('/myths', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -226,7 +233,8 @@ router.get('/myths/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -270,7 +278,8 @@ router.get('/stats', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -287,7 +296,8 @@ router.get('/stats/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -331,7 +341,8 @@ router.get('/video', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
@@ -348,7 +359,8 @@ router.get('/video/:id', (req, res) => {
       console.log(err);
     }
     else {
-      console.log(result);
+      // console.log(result);
+      // console.log(fields);
       res.json({
         data: result,
         fields: fields
