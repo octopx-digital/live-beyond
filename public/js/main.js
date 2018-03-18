@@ -48,7 +48,7 @@ import videoCtrl from './modules/videocontrols';
   // function to scroll to selected area when menu clicked
   function scrollSection(evt) {
     evt.preventDefault();
-    menuAnimation();
+    // menuAnimation();
 
     switch(evt.currentTarget.id) {
       case 'header-logo':
@@ -190,13 +190,13 @@ import videoCtrl from './modules/videocontrols';
       .then((resp) => resp.json())
       .then((data) => {
         let mythsList = document.querySelector('#myths-list');
-        data.myths.forEach(({text, position}) => {
+        data.myths.forEach(({title, text, position}) => {
           if(position < 10){
             var newPosition = "0"+position;
           } else {
             var newPosition = position;
           }
-          let myth = `<li><span class="coloured">${newPosition}.</span><p>${text}</p></li>`;
+          let myth = `<li><span class="coloured">${newPosition}.</span><h4>${title}</h4><p>${text}</p></li>`;
           mythsList.innerHTML += myth;
         });
       })
