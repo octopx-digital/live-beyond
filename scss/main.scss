@@ -723,8 +723,8 @@ footer {
       p {
         font-family: $fontText;
         font-weight: 200;
-        line-height: 24px;
-        font-size: 1rem;
+        line-height: 22px;
+        font-size: 0.9rem;
         color: $text;
         clear: both;
       }
@@ -740,7 +740,7 @@ footer {
       h4{
         text-transform: uppercase;
         font-size: 1.1rem;
-        padding: 1.1rem;
+        padding: 1rem;
         font-family: $fontText;
         &:before{
           content: ' "';
