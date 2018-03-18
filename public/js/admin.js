@@ -39,14 +39,18 @@
         data.fields.forEach((field) => {
           if(field.name != 'id') {
             let item;
+            let required = '';
+            if(field.flags >= 4097) {
+              required = 'required';
+            }
             // check if it is a text field
             // if it is not, add a input element
             if(field.type != '252') {
-              item = `<label for="${field.name}">${field.name}</label><input type="text" name="${field.name}" value=""><br>`;
+              item = `<label for="${field.name}">${field.name}</label><input type="text" name="${field.name}" value="" ${required}><br>`;
             }
             // if it is a text field, add a textarea element
             else {
-              item = `<label for="${field.name}">${field.name}</label><textarea name="${field.name}"></textarea><br>`;
+              item = `<label for="${field.name}">${field.name}</label><textarea name="${field.name}" ${required}></textarea><br>`;
             }
             form.innerHTML += item;
           }
@@ -71,17 +75,21 @@
           if(field.name != 'id') {
             let item;
             let value = '';
+            let required='';
             if(data.data[0][field.name]) {
               value = data.data[0][field.name];
+            }
+            if(field.flags >= 4097) {
+              required = 'required';
             }
             // check if it is a text field
             // if it is not, add a input element
             if(field.type != '252') {
-              item = `<label for="${field.name}">${field.name}</label><input type="text" name="${field.name}" value="${value}"><br>`;
+              item = `<label for="${field.name}">${field.name}</label><input type="text" name="${field.name}" value="${value}" ${required}><br>`;
             }
             // if it is a text field, add a textarea element
             else {
-              item = `<label for="${field.name}">${field.name}</label><textarea name="${field.name}">${value}</textarea><br>`;
+              item = `<label for="${field.name}">${field.name}</label><textarea name="${field.name}" ${required}>${value}</textarea><br>`;
             }
             form.innerHTML += item;
           }
