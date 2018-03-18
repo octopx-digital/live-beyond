@@ -97,7 +97,7 @@ CREATE TABLE `facts` (
 
 LOCK TABLES `facts` WRITE;
 /*!40000 ALTER TABLE `facts` DISABLE KEYS */;
-INSERT INTO `facts` VALUES (1,'donor_save','<span class=\"number\">1</span> <span class=\"bigger\">donor</span> <br>can save <br><span class=\"number\">8</span> <span class=\"bigger\">lives</span>',1),(2,'people_queue','<span class=\"number\">1,500</span> <br>people need a <span class=\"bigger\">transplant</span> <br>in Ontario',2),(3,'registered_rate','only <br><span class=\"number\">32%</span> <br>of Ontarians are <span class=\"bigger\">registered</span> <br>as donors',3);
+INSERT INTO `facts` VALUES (1,'donor_save','<span class=\'number\'>1</span> <span class=\'bigger\'>donor</span> <br>can save <br><span class=\'number\'>8</span> <span class=\'bigger\'>lives</span>',1),(2,'people_queue','<span class=\'number\'>1,500</span> <br>people need a <span class=\'bigger\'>transplant</span> <br>in Ontario',2),(3,'registered_rate','only <br><span class=\'number\'>32%</span> <br>of Ontarians are <span class=\'bigger\'>registered</span> <br>as donors',3);
 /*!40000 ALTER TABLE `facts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-15 20:24:39
+-- Dump completed on 2018-03-18 12:19:39

@@ -156,7 +156,7 @@ import videoCtrl from './modules/videocontrols';
   }
 
   function getVideo() {
-    let url = 'video';
+    let url = 'video/get';
 
     fetch(url)
       .then((resp) => resp.json())

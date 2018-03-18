@@ -8,7 +8,6 @@ router.use(bodyParser.json());
 
 // get all fact elements
 router.get('/getAll', (req, res) => {
-  console.log(req.params.id);
   let getBanner = `SELECT * FROM banner ORDER BY position`;
   connect.query(getBanner, (err, result) => {
     if(err) {
@@ -16,8 +15,6 @@ router.get('/getAll', (req, res) => {
       console.log(err);
     }
     else {
-      // console.log(result);
-      //return result as json
       res.json({
         banner: result
       });
@@ -25,20 +22,43 @@ router.get('/getAll', (req, res) => {
   });
 });
 
-// router.delete('api/:id', (req, res) => {
-//   console.log('hit to delete route');
-//
-//   connect.query(`DELETE FROM mainmodel WHERE model = "${req.params.id}"`, (err, result) => {
-//     if(err) {
-//       throw err;
-//       console.log(err);
-//     }
-//     else {
-//       console.log(result);
-//       //return result as json
-//       res.json(result);
-//     }
-//   });
-// })
+router.post('/add', (req, res) => {
+  let insert = `INSERT INTO banner (name, description, photo, alt, position) VALUE ("${req.body.name}", "${req.body.description}", "${req.body.photo}", "${req.body.alt}", ${req.body.position});`;
+  connect.query(insert, (err, data) => {
+    if(err) {
+      throw err;
+    }
+    else {
+      //if success, redirect to admin page
+      return res.redirect('/admin');
+    }
+  });
+});
+
+router.post('/edit/:id', (req, res) => {
+  let update = `UPDATE banner SET name = "${req.body.name}", description = "${req.body.description}", photo = "${req.body.photo}", alt = "${req.body.alt}", position = ${req.body.position} WHERE id = ${req.params.id};`;
+  connect.query(update, (err, data) => {
+    if(err) {
+      throw err;
+    }
+    else {
+      //if success, redirect to admin page
+      return res.redirect('/admin');
+    }
+  });
+});
+
+router.delete('/delete/:id', (req, res) => {
+  let remove = `DELETE FROM banner WHERE id = "${req.params.id}"`;
+  connect.query(remove, (err, result) => {
+    if(err) {
+      throw err;
+      console.log(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+});
 
 module.exports = router;
