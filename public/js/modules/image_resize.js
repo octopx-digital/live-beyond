@@ -9,13 +9,13 @@ var curSize = 'large';
 //check screen size and sets screensize variable
 function checkScreenSize() {
   if(this < MEDIUM || window.innerWidth < MEDIUM) {
-    screensize = 'small';
+    return screensize = 'small';
   }
   else if(this < LARGE || window.innerWidth < LARGE) {
-    screensize = 'medium';
+    return screensize = 'medium';
   }
   else {
-    screensize = 'large';
+    return screensize = 'large';
   }
 }
 

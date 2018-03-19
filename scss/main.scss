@@ -78,6 +78,8 @@ header{
       li {
         margin: 0.5rem 0;
         a{
+          display: block;
+          width: 100%;
           text-transform: uppercase;
           text-decoration: none;
           color: #ffffff;
@@ -87,10 +89,13 @@ header{
       li:last-child {
         width: 30%;
         margin: 1.5rem auto;
-        padding: 0.5rem 1rem;
         border-radius: 6px;
         font-weight: bold;
         background-color: $yellow;
+        a{
+          width: 100%;
+          padding: 0.5rem 0;
+        }
       }
     }
   }
@@ -246,6 +251,7 @@ header.openmenu {
 
 #events{
   padding: 4rem 0 0 0;
+  min-height: 300px;
   .event-header{
     text-align: center;
           padding: 10px;
@@ -294,8 +300,9 @@ header.openmenu {
         margin: 0 auto;
         overflow: hidden;
         #events-container{
-          width: 400%;
+          // width: 400%;
           position: relative;
+          left: 0;
           display: inline-flex;
           transition: all 0.4s ease;
           .events{
@@ -303,6 +310,7 @@ header.openmenu {
             width: 80%;
             height: 100%;
             .event-data{
+              min-height: 400px;
               display: flex;
               flex-direction: column;
               justify-content: space-around;
@@ -392,12 +400,14 @@ footer {
         li {
           width: 50%;
           margin: 0 auto;
-          padding: 1rem 1rem;
           border-radius: 6px;
           background-color: $yellow;
           box-shadow: 2px 3px 8px -2px #000000;
 
           a {
+            display: block;
+            padding: 2rem 0;
+            // width: 100%;
             color: #fff;
             text-transform: uppercase;
             text-decoration: none;
@@ -714,21 +724,37 @@ footer {
       p {
         font-family: $fontText;
         font-weight: 200;
-        line-height: 24px;
-        font-size: 1rem;
+        line-height: 22px;
+        font-size: 0.9rem;
         color: $text;
+        clear: both;
       }
       .coloured{
         font-weight: 600;
         font-family: $fontText;
         font-size: 2.2rem;
         line-height: 60px;
+        display: table;
+        float: left;
+        margin: 0.8rem 0.8rem 0 0.8rem;
+      }
+      h4{
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        padding: 1rem;
+        font-family: $fontText;
+        &:before{
+          content: ' "';
+        }
+        &:after{
+          content: '" ';
+        }
       }
     }
     li:nth-child(4n+1){
       z-index: 100;
       border-bottom: 15px solid $wine;
-      .coloured{
+      .coloured, h4{
         color: $wine;
       }
     }
@@ -737,7 +763,7 @@ footer {
       margin-left: 30px;
       margin-top: -15px;
       border-bottom: 15px solid $pink;
-      .coloured{
+      .coloured, h4{
         color: $pink;
       }
     }
@@ -745,7 +771,7 @@ footer {
       z-index: 80;
       margin-top: -15px;
       border-bottom: 15px solid $yellow;
-      .coloured{
+      .coloured, h4{
         color: $yellow;
       }
     }
@@ -754,7 +780,7 @@ footer {
       margin-left: 30px;
       margin-top: -15px;
       border-bottom: 15px solid $magenta;
-      .coloured{
+      .coloured, h4{
         color: $magenta;
       }
     }
@@ -1195,6 +1221,9 @@ footer {
       margin: 0 auto;
       ul li {
         width: 100%;
+        h4{
+          padding: 2rem 1.1rem 1.1rem 1.1rem;
+        }
       }
     }
   }
@@ -1208,7 +1237,7 @@ footer {
         margin: 0 auto;
         overflow: hidden;
         #events-container{
-          width: 200%;
+          // width: 200%;
           position: relative;
           display: inline-flex;
           transition: all 0.4s ease;
@@ -1305,9 +1334,10 @@ footer {
         margin: 0;
         ul {
           li {
-            width: 100%;
+            width: 120%;
             a {
               font-size: 0.9rem;
+              padding: 2rem 1rem;
             }
           }
         }
@@ -1362,7 +1392,7 @@ footer {
           }
         }
         li:last-child {
-          max-width: 6rem;
+          // max-width: 6rem;
           margin: 0;
         }
       }
@@ -1475,13 +1505,13 @@ footer {
       .events-holder{
         width: 90%;
         #events-container{
-          width: 100%;
+          // width: 125%;
           position: relative;
           display: inline-flex;
           transition: all 0.4s ease;
           .events{
             padding: 10px 8px;
-            width: 33%;
+            width: 25%;
             height: 100%;
             .event-data {
               min-height: 400px;
@@ -1541,6 +1571,10 @@ footer {
         .coloured{
           font-size: 3rem;
           line-height: 80px;
+          }
+          h4 {
+            font-size: 1.3rem;
+            padding: 3rem 1.1rem 1.1rem 1.1rem;
           }
         }
       }

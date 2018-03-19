@@ -18,6 +18,11 @@ import videoCtrl from './modules/videocontrols';
   var menuOpen = false;
   var bannerIndex = 0;
 
+  if(document.querySelector('#submit')){
+    let submit = document.querySelector('#submit');
+    submit.addEventListener('click', checkRequest, false);
+  }
+
   var bannerTl = new TimelineMax({
     repeat: -1,
     paused: true
@@ -48,7 +53,7 @@ import videoCtrl from './modules/videocontrols';
   // function to scroll to selected area when menu clicked
   function scrollSection(evt) {
     evt.preventDefault();
-    menuAnimation();
+    // menuAnimation();
 
     switch(evt.currentTarget.id) {
       case 'header-logo':
@@ -190,13 +195,13 @@ import videoCtrl from './modules/videocontrols';
       .then((resp) => resp.json())
       .then((data) => {
         let mythsList = document.querySelector('#myths-list');
-        data.myths.forEach(({text, position}) => {
+        data.myths.forEach(({title, text, position}) => {
           if(position < 10){
             var newPosition = "0"+position;
           } else {
             var newPosition = position;
           }
-          let myth = `<li><span class="coloured">${newPosition}.</span><p>${text}</p></li>`;
+          let myth = `<li><span class="coloured">${newPosition}.</span><h4>${title}</h4><p>${text}</p></li>`;
           mythsList.innerHTML += myth;
         });
       })
@@ -205,13 +210,48 @@ import videoCtrl from './modules/videocontrols';
       });
   }
 
+  function sizeElements() {
+    var container = document.querySelector('#events-container');
+    let numEl = container.children.length;
+
+    var screensize = resize.checkScreenSize();
+    var thumbSize;
+    if (screensize == 'small'){
+      thumbSize = 100;
+    }
+    if (screensize == 'medium'){
+      thumbSize = 50;
+    }
+    if (screensize == 'large'){
+      thumbSize = 25;
+    }
+    container.style.width = (numEl * thumbSize) +"%";
+    arrows();
+  }
+
   function getEvents() {
     let url = 'events/getAll';
+    var container = document.querySelector('#events-container');
+
+    var screensize = resize.checkScreenSize();
+    var thumbSize;
+    if (screensize == 'small'){
+      thumbSize = 100;
+    }
+    if (screensize == 'medium'){
+      thumbSize = 50;
+    }
+    if (screensize == 'large'){
+      thumbSize = 25;
+    }
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        let container = document.querySelector('#events-container');
+        while(container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+        container.style.width = (data.events.length * thumbSize) +"%";
         data.events.forEach(({title, date, time, address, partner, logo, link}) => {
           let tern = "";
           if(time != null){
@@ -278,7 +318,8 @@ import videoCtrl from './modules/videocontrols';
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('load', videoCtrl, false);
-  window.addEventListener('resize', arrows, false);
+  // window.addEventListener('resize', getEvents, false);
+    window.addEventListener('resize', sizeElements, false);
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);

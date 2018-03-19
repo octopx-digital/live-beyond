@@ -6,18 +6,16 @@ export default function eventArrows(){
   let thumbcount = events.querySelectorAll('.events');
   let thumb = thumbcount[0].offsetWidth;
   let thumbWidth = events.offsetWidth;
+  var holder = document.querySelector('.events-holder').getBoundingClientRect().right;
   let leftPosition = 0;
-  events.style.left = leftPosition+"px";
-
-  toLeft.addEventListener('click', moveBack, false);
-  toRight.addEventListener('click', moveForward, false);
+  // events.style.left = leftPosition+"px";
 
   let moveSlide = function (value) {
-      leftPosition += value * thumb;
-      events.style.left = leftPosition + 'px';
+    leftPosition += value * thumb;
+    events.style.left = leftPosition + 'px';
   };
   function moveBack(){
-    console.log('back');
+    // console.log('back');
     if(leftPosition !== 0) {
       moveSlide(1);
     } else if (leftPosition === 0) {
@@ -29,12 +27,34 @@ export default function eventArrows(){
   }
 
   function moveForward(){
-    console.log('forward');
-    if (leftPosition > (thumbs-1) * -thumb) {
-      moveSlide(-1);
-    } else {
-      leftPosition = 0;
-      events.style.left = leftPosition + 'px';
+    let rightPos = events.getBoundingClientRect().right;
+    //If it's not mobile
+    if (window.innerWidth > 640){
+      //Check if the right position are proximate enough
+      var diff = ( rightPos - holder );
+      //If difference is smaller than 5, return container at position 0
+      if( diff < 5 ) {
+          leftPosition = 0;
+          events.style.left = '0px';
+      } else {
+        if (leftPosition > (thumbs-1) * -thumb) {
+          moveSlide(-1);
+        } else {
+          leftPosition = 0;
+          events.style.left = leftPosition + 'px';
+        }
+      }
+    }
+    else{
+      if (leftPosition > (thumbs-1) * -thumb) {
+        moveSlide(-1);
+      } else {
+        leftPosition = 0;
+        events.style.left = leftPosition + 'px';
+      }
     }
   }
+
+  toLeft.addEventListener('click', moveBack, false);
+  toRight.addEventListener('click', moveForward, false);
 }
