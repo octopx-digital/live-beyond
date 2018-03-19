@@ -302,6 +302,7 @@ header.openmenu {
         #events-container{
           // width: 400%;
           position: relative;
+          left: 0;
           display: inline-flex;
           transition: all 0.4s ease;
           .events{

@@ -18,6 +18,11 @@ import videoCtrl from './modules/videocontrols';
   var menuOpen = false;
   var bannerIndex = 0;
 
+  if(document.querySelector('#submit')){
+    let submit = document.querySelector('#submit');
+    submit.addEventListener('click', checkRequest, false);
+  }
+
   var bannerTl = new TimelineMax({
     repeat: -1,
     paused: true
@@ -205,6 +210,25 @@ import videoCtrl from './modules/videocontrols';
       });
   }
 
+  function sizeElements() {
+    var container = document.querySelector('#events-container');
+    let numEl = container.children.length;
+
+    var screensize = resize.checkScreenSize();
+    var thumbSize;
+    if (screensize == 'small'){
+      thumbSize = 100;
+    }
+    if (screensize == 'medium'){
+      thumbSize = 50;
+    }
+    if (screensize == 'large'){
+      thumbSize = 25;
+    }
+    container.style.width = (numEl * thumbSize) +"%";
+    arrows();
+  }
+
   function getEvents() {
     let url = 'events/getAll';
     var container = document.querySelector('#events-container');
@@ -228,7 +252,6 @@ import videoCtrl from './modules/videocontrols';
           container.removeChild(container.firstChild);
         }
         container.style.width = (data.events.length * thumbSize) +"%";
-        console.log(container.offsetWidth);
         data.events.forEach(({title, date, time, address, partner, logo, link}) => {
           let tern = "";
           if(time != null){
@@ -295,7 +318,8 @@ import videoCtrl from './modules/videocontrols';
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('load', videoCtrl, false);
-  window.addEventListener('resize', getEvents, false);
+  // window.addEventListener('resize', getEvents, false);
+    window.addEventListener('resize', sizeElements, false);
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
