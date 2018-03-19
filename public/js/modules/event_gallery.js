@@ -1,29 +1,22 @@
 export default function eventArrows(){
-  console.log('called arrows');
   let toLeft = document.querySelector('.nav-back');
   let toRight = document.querySelector('.nav-forward');
   let events = document.querySelector('#events-container');
   let thumbs = events.children.length;
   let thumbcount = events.querySelectorAll('.events');
   let thumb = thumbcount[0].offsetWidth;
-  console.log('thumb '+thumb);
   let thumbWidth = events.offsetWidth;
-  // let rightPos = events.getBoundingClientRect();
-  // console.log(rightPos);
-  var holder = document.querySelector('.events-holder').getBoundingClientRect().right;
-  // console.log("holder right:"+holder);
+  var holder = document.querySelector('.events-holder').getBoundingClientRect().right.toFixed();
   let leftPosition = 0;
   events.style.left = leftPosition+"px";
+  // console.log("holder right: "+holder);
 
   toLeft.addEventListener('click', moveBack, false);
   toRight.addEventListener('click', moveForward, false);
 
   let moveSlide = function (value) {
-    console.log("thumbWidth: "+thumbWidth);
-      console.log("thumb: "+thumb);
-      leftPosition += value * thumb;
-      console.log("new position: "+leftPosition);
-      events.style.left = leftPosition + 'px';
+    leftPosition += value * thumb;
+    events.style.left = leftPosition + 'px';
   };
   function moveBack(){
     console.log('back');
@@ -39,12 +32,21 @@ export default function eventArrows(){
 
   function moveForward(){
     console.log('forward');
-    let rightPos = events.getBoundingClientRect().right;
+    let rightPos = events.getBoundingClientRect().right.toFixed();
+    // console.log("Right pos: "+rightPos);
+    // console.log('Holder: '+holder);
+
+    //If it's not mobile
     if (window.innerWidth > 640){
-      if(Math.ceil(rightPos) <= Math.floor(holder + thumb)){
-        console.log('equal');
-        return;
+      //Check if the right position are proximate enough
+      var diff = Math.abs( holder - rightPos );
+      //If difference is small, return and don't do anything
+      if( diff < 10 ) {
+          console.log('equal');
+          return;
       }
+      // if(Math.ceil(rightPos) == Math.floor(holder)){
+      // }
     }
     if (leftPosition > (thumbs-1) * -thumb) {
       moveSlide(-1);
