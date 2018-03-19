@@ -208,11 +208,27 @@ import videoCtrl from './modules/videocontrols';
   function getEvents() {
     let url = 'events/getAll';
     var container = document.querySelector('#events-container');
-    container.innerHTML = "";
+
+    var screensize = resize.checkScreenSize();
+    var thumbSize;
+    if (screensize == 'small'){
+      thumbSize = 100;
+    }
+    if (screensize == 'medium'){
+      thumbSize = 50;
+    }
+    if (screensize == 'large'){
+      thumbSize = 25;
+    }
 
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
+        while(container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+        container.style.width = (data.events.length * thumbSize) +"%";
+        console.log(container.offsetWidth);
         data.events.forEach(({title, date, time, address, partner, logo, link}) => {
           let tern = "";
           if(time != null){
@@ -279,7 +295,7 @@ import videoCtrl from './modules/videocontrols';
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('load', videoCtrl, false);
-  window.addEventListener('resize', arrows, false);
+  window.addEventListener('resize', getEvents, false);
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
