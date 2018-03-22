@@ -1,0 +1,26 @@
+
+<h2>{{ subTitle }}</h2>
+
+<div>
+  <ul>
+    {{#each userData}}
+    <li><p>{{ fname }}</p> <p>{{ username }}</p> <a href="users/delete/{{ id }}">delete</a><a href="users/edit/{{ id }}">edit</a></li>
+    {{/each}}
+  </ul>
+</div>
+
+{{#if singleUSer}}
+<div class="">
+  <h2>{{ singleUSer.fname }}</h2>
+  <label for="fname">Full Name:</label>
+  <input type="text" name="fname" value="{{ singleUSer.fname }}">
+  <label for="username">Username:</label>
+  <input type="text" name="username" value="{{ singleUSer.username }}">
+  <label for="email">Email:</label>
+  <input type="email" name="email" value="{{ singleUSer.email }}">
+  <label for="Password">Password:</label>
+  <!-- <input type="email" name="" value="{{ singleUSer.password }}"> -->
+  <input type="email" name="" value="">
+  <input type="button" name="submit" value="SAVE">
+</div>
+{{/if}}

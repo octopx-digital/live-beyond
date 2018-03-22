@@ -18,11 +18,6 @@ import videoCtrl from './modules/videocontrols';
   var menuOpen = false;
   var bannerIndex = 0;
 
-  if(document.querySelector('#submit')){
-    let submit = document.querySelector('#submit');
-    submit.addEventListener('click', checkRequest, false);
-  }
-
   var bannerTl = new TimelineMax({
     repeat: -1,
     paused: true

@@ -1,4 +1,6 @@
+import login from './modules/login';
 
+(() => {
   var buttons = document.querySelectorAll('button');
 
   function getRows(e) {
@@ -126,3 +128,10 @@
     let tbl = button.getAttribute('name');
     button.addEventListener('click', getRows, false);
   });
+
+  if(document.querySelector('#submit')){
+    let submit = document.querySelector('#submit');
+    submit.addEventListener('click', login.registerUser , false);
+  }
+
+})();

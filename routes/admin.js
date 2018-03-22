@@ -396,4 +396,39 @@ router.get('/editvideo/:id', (req, res) => {
   });
 });
 
+router.get('/users', function(req, res, next) {
+  connect.query('SELECT id, fname, username, email FROM users WHERE active = 1', (err, result) => {
+    if(err) {
+      throw err; console.log(err);
+    } else {
+      console.log(result);
+      res.render('users', {
+        adminpage: true,
+        title: 'Live Beyond Your Life | Users',
+        subTitle: "Users",
+        year: year,
+        userData : result
+      });
+    }
+  });
+});
+
+router.get('/users/edit/:id', function(req, res, next) {
+  let getSingle = `SELECT id, fname, username, email FROM users WHERE id=${req.params.id}`;
+  connect.query( getSingle, (err, result) => {
+    if(err) {
+      throw err; console.log(err);
+    } else {
+      console.log(result);
+      res.render('users', {
+        adminpage: true,
+        title: 'Live Beyond Your Life | Users',
+        singleUSer : result[0],
+        subTitle: "Users",
+        year: year
+      });
+    }
+  });
+});
+
 module.exports = router;
