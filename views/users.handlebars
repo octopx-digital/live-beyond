@@ -7,6 +7,9 @@
     <li><p>{{ fname }}</p> <p>{{ username }}</p> <a href="users/delete/{{ id }}">delete</a><a href="users/edit/{{ id }}">edit</a></li>
     {{/each}}
   </ul>
+    {{#if userData}}
+      <a href="users/register">Create New User</a>
+    {{/if}}
 </div>
 
 {{#if singleUSer}}
@@ -23,4 +26,22 @@
   <input type="email" name="" value="">
   <input type="button" name="submit" value="SAVE">
 </div>
+{{/if}}
+
+{{#if register}}
+  <form>
+    <label>Full Name:</label>
+    <input type="text" name="fname" required value="">
+    <br>
+    <label>Username:</label>
+    <input type="text" name="username" required value="">
+    <br>
+    <label>Password:</label>
+    <input type="password" name="password" required value="">
+    <br>
+    <label>Email:</label>
+    <input type="email" name="email" required value="">
+    <br><br>
+    <input type="submit" id="submit" name="submit" value="REGISTER">
+  </form>
 {{/if}}

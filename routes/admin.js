@@ -3,6 +3,7 @@ var router = express.Router();
 var config = require('../config');
 var bodyParser = require('body-parser');
 var connect = require('../utils/sqlConnect');
+var bcrypt = require('bcryptjs');
 
 var curdate = new Date();
 var year = curdate.getFullYear();
@@ -413,6 +414,36 @@ router.get('/users', function(req, res, next) {
   });
 });
 
+router.get('/users/register', (req, res, next) => {
+  res.render('users', {
+    adminpage: true,
+    title: 'Live Beyond Your Life | Users',
+    register : true,
+    subTitle: "Create New User",
+    year: year
+  });
+});
+
+router.post('/users/register', (req, res, next) => {
+  var newPass = req.body.pass;
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(newPass , salt, function(err, hash) {
+      var newHash = hash;
+      let newUser = `INSERT INTO users (fname, username, password, email) VALUE ("${req.body.fname}", "${req.body.username}", "${newHash}" , "${req.body.email}");`;
+      connect.query(newUser, (err, data) => {
+        if(err) {
+          throw err;
+        }
+        else {
+          //if success, redirect to admin page
+          // return res.redirect('/admin');
+          return data;
+        }
+      });
+    });
+  });
+});
+
 router.get('/users/edit/:id', function(req, res, next) {
   let getSingle = `SELECT id, fname, username, email FROM users WHERE id=${req.params.id}`;
   connect.query( getSingle, (err, result) => {
@@ -424,7 +455,7 @@ router.get('/users/edit/:id', function(req, res, next) {
         adminpage: true,
         title: 'Live Beyond Your Life | Users',
         singleUSer : result[0],
-        subTitle: "Users",
+        subTitle: "Edit User",
         year: year
       });
     }
