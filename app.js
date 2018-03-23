@@ -15,7 +15,7 @@ var stats = require('./routes/stats');
 var myths = require('./routes/myths');
 var events = require('./routes/events');
 var video = require('./routes/video');
-var login = require('./routes/login');
+// var login = require('./routes/login');
 
 var app = express();
 
@@ -40,7 +40,7 @@ app.use('/stats', stats);
 app.use('/myths', myths);
 app.use('/events', events);
 app.use('/video', video);
-app.use('/login', login);
+// app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
