@@ -18,10 +18,10 @@ var instagramContent = {
     'gallery_monica'
   ],
   desc: [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eleifend quis nulla id dapibus. Nam et nisl at diam pulvinar condimentum. Aliquam tempus venenatis nulla in blandit. Aliquam et ex magna.',
-    'Pellentesque scelerisque in massa vitae auctor. Aenean volutpat consequat commodo. Fusce ac magna eget lorem faucibus aliquet vel in libero.',
-    'Vivamus sed augue vehicula, vulputate dui et, varius arcu.',
-    'Nullam a leo ut tortor porta finibus eget varius ante. Nunc purus urna, ultrices non luctus sed, elementum eu elit. In vitae tellus vel ipsum gravida blandit id nec dui.'
+    'It was 1998 when my wife was told her liver was severely damaged. Devastated, spending months in the hospital, I will never forget how organ donors saved my wife and in turn, my own life. The miracle of life and the selflessness of other people will be something that we hold in our hearts forever.',
+    'All my life I’ve wanted to help other people. It’s always been my dream to work for dentists without borders. Yet, I was diagnosed with chronic kidney disease. Suddenly, everyday tasks became harder and harder. I owe my life to the organ donors that gave me a future. Today I am graduating my undergrad and applying to dental school!',
+    'Since birth Ellie had hard time breathing. What was originally thought to be asthma, was diagnosed as an underdeveloped heart. She couldn’t walk or eat and eventually she was put into intensive care. If it wasn’t for organ donation she would never have been able to live a normal life and for that we are eternally grateful.',
+    'I was always tired as a child, I had trouble keeping up with kids in sports and activities. When I was 12, we found out one of my kidneys was underdeveloped, and the other was failing. It was the end of my life, I thought. I owe my entire world to my mother, who volunteered to donate a kidney and gave me a future.'
   ]
 }
 
