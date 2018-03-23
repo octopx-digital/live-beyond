@@ -15,9 +15,79 @@ router.get('/', function(req, res, next) {
   res.render('login', {
     adminpage: true,
     title: 'Live Beyond Your Life | Login',
+    subTitle: 'Login',
     year: year
   });
 });
+
+router.get('/check', (req, res, next) => {
+  res.render('login', {
+    adminpage: true,
+    title: 'Live Beyond Your Life | Login',
+    subTitle: 'Login',
+    error: true,
+    message: "Seems that there's something wrong, try again!",
+    year: year,
+  });
+});
+
+router.post('/check', (req, res, next) => {
+  if(req.body.username != null && req.body.password != null){
+    let logInfo = req.body.username;
+    let password = req.body.password;
+    let checkUser = `SELECT * FROM users WHERE username = "${logInfo}"`;
+    // console.log(checkUser);
+  connect.query(checkUser, (err, result) => {
+    console.log("result: "+result);
+    if(result){
+      if(result.length > 0) {
+        let hash = result[0].password;
+          bcrypt.compare(password, hash).then((response, err) => {
+            // res === true
+            if(response) {
+              // req.session.valid = true;
+              res.redirect('/admin');
+            } else {
+              console.log(err);
+              res.render('login', {
+                adminpage: true,
+                title: 'Live Beyond Your Life | Login',
+                subTitle: 'Login',
+                error: true,
+                message: "Oooops, there's something wrong, try again!",
+                year: year,
+              });
+            }
+        });
+      }
+      else {
+        res.render('login', {
+          adminpage: true,
+          title: 'Live Beyond Your Life | Login',
+          subTitle: 'Login',
+          error: true,
+          message: "Oooops, there's something wrong, try again!",
+          year: year,
+        });
+      }
+    }
+    else {
+      console.log(err);
+    }
+  });
+} else {
+  res.render('login', {
+    adminpage: true,
+    title: 'Live Beyond Your Life | Login',
+    subTitle: 'Login',
+    error: true,
+    message: "Seems that there's something wrong, try again!",
+    year: year,
+  });
+}
+});
+
+
 
 
 

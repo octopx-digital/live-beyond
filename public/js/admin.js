@@ -129,9 +129,14 @@ import login from './modules/login';
     button.addEventListener('click', getRows, false);
   });
 
-  if(document.querySelector('#submit')){
-    let submit = document.querySelector('#submit');
-    submit.addEventListener('click', login.registerUser , false);
+  if(document.querySelector('#register')){
+    let register = document.querySelector('#register');
+    register.addEventListener('click', login.registerUser , false);
   }
+
+  // if(document.querySelector('#submit')){
+  //   let submit = document.querySelector('#submit');
+  //   submit.addEventListener('click', login.checkRequest , false);
+  // }
 
 })();

@@ -1,38 +1,54 @@
+//
+// function checkRequest(){
+//   // if(document.querySelector('input[name="username"]').value || document.querySelector('input[name="username"]').value){
+//     // let username = document.querySelector('input[name="username"]').value;
+//     // let pass = document.querySelector('input[name="password"]').value;
+//     // let url = '/login/'+username;
+//     //
+//     // fetch(url)
+//     //     .then((data) => {
+//     //       console.log('success');
+//     //       // printMessage("success");
+//     //     })
+//     //       .catch(function(error) {
+//     //         console.log(error);
+//     //
+//     //       });
+//     // console.log('check');
+//   // }
+//
+// }
 
-function checkRequest(){
+  function registerUser(){
+    let fname = document.querySelector('input[name="fname"]').value;
+    let username = document.querySelector('input[name="username"]').value;
+    let pass = document.querySelector('input[name="password"]').value;
+    let email = document.querySelector('input[name="email"]').value;
+    let url = '/login/register';
 
-  console.log('checkRequest');
-}
-
-function registerUser(){
-  let fname = document.querySelector('input[name="fname"]').value;
-  let username = document.querySelector('input[name="username"]').value;
-  let pass = document.querySelector('input[name="password"]').value;
-  let email = document.querySelector('input[name="email"]').value;
-  let url = '/login/register';
-
-  fetch( url, {
-    headers: {
-     "Content-Type": "application/json",
-     "Accept": "application/json, text-plain, */*",
-     "X-Requested-With": "XMLHttpRequest"
-   },
-     method: 'post',
-     body: JSON.stringify({
-      fname: fname,
-      username : username,
-      pass : pass,
-      email : email
-    })
-   })
-      .then((data) => {
-        console.log('success');
+    fetch(url, {
+      headers: {
+       "Content-Type": "application/json",
+       "Accept": "application/json, text-plain, */*",
+       "X-Requested-With": "XMLHttpRequest"
+     },
+       method: 'post',
+       body: JSON.stringify({
+        fname: fname,
+        username : username,
+        pass : pass,
+        email : email
       })
-        .catch(function(error) {
-          console.log(error);
+     })
+        .then((data) => {
+          console.log('success');
+          // printMessage("success");
+        })
+          .catch(function(error) {
+            console.log(error);
 
-        });
-}
+          });
+  }
 
   // function printMessage(message){
   //   let messageContainer = document.querySelector('.message');
@@ -47,6 +63,6 @@ function registerUser(){
   // }
 
 module.exports = {
-  checkRequest : checkRequest,
+  // checkRequest : checkRequest,
   registerUser : registerUser
 }

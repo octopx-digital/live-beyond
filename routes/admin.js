@@ -12,11 +12,13 @@ var year = curdate.getFullYear();
 router.use(bodyParser.urlencoded({ extended: false}));
 router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
-  res.render('admin', {
-    adminpage: true,
-    title: 'Live Beyond Your Life | Admin ',
-    year: year
-  });
+  // if( req.session.valid){
+    res.render('admin', {
+      adminpage: true,
+      title: 'Live Beyond Your Life | Admin ',
+      year: year
+    });
+  // }
 });
 
 router.get('/banner', (req, res) => {
