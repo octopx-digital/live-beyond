@@ -2,6 +2,7 @@ import resize from './modules/image_resize';
 import arrows from './modules/event_gallery';
 import instagram from './modules/instagram';
 import videoCtrl from './modules/videocontrols';
+import CountUp from 'countup.js';
 
 (() => {
   var bodyarea = document.querySelector('body');
@@ -11,11 +12,16 @@ import videoCtrl from './modules/videocontrols';
   var mainBanner = document.querySelector('#main-banner');
   var factsSec = document.querySelector('#facts');
   var statsSec = document.querySelector('#stats');
+  var statsList = statsSec.querySelector('#stats-wrapper > ul');
   var mythsSec = document.querySelector('#myths');
   var videoSec = document.querySelector('#video-cont');
   var eventsSec = document.querySelector('#events');
   var instaSec = document.querySelector('#instagram');
+  var facts;
   var menuOpen = false;
+  var statsAnimated = false;
+  var factsAnimated = false;
+  var statsNumbers = [];
   var bannerIndex = 0;
 
   if(document.querySelector('#submit')){
@@ -28,11 +34,70 @@ import videoCtrl from './modules/videocontrols';
     paused: true
   });
 
+  var factsTl = new TimelineLite({
+    paused: true
+  });
+
   function checkScrollMenu() {
     // if menu is open, close it when scroll
     if(menuOpen === true) {
       menuAnimation();
     }
+  }
+
+  function isElementInViewport(el) {
+    let rect = el.getBoundingClientRect();
+    return (
+      rect.top >= -Math.abs((rect.height/4)) &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight+(rect.height/2) || document.documentElement.clientHeight+(rect.height/2)) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  function animateStats() {
+    var statsSuccess = statsList.querySelector('.organ-success');
+    var queue = statsList.querySelectorAll('.organ-queue');
+    var statsQueue = queue[queue.length-1];
+    if(isElementInViewport(statsSuccess) || isElementInViewport(statsQueue)) {
+      if (!statsAnimated) {
+        let stats = statsList.querySelectorAll('.stat-number');
+        let options = {
+          useEasing: true,
+          useGrouping: true,
+          separator: ',',
+          decimal: '.',
+        };
+        stats.forEach((number, index) => {
+          let animation = new CountUp(number, 0, statsNumbers[index], 0, 5, options);
+          if (!animation.error) {
+            animation.start();
+          } else {
+            console.error(animation.error);
+          }
+        });
+        statsAnimated = true;
+        window.removeEventListener('scroll', animateStats, false);
+      }
+    }
+  }
+
+  function displayFacts() {
+    if(!factsAnimated) {
+      let wrapper = factsSec.querySelector('#fact-wrapper');
+      facts = wrapper.querySelectorAll('.fact');
+      if(isElementInViewport(wrapper)) {
+        factsTl.play();
+        factsAnimated = true;
+        window.removeEventListener('scroll', displayFacts, false);
+      }
+    }
+  }
+
+  function animateFacts() {
+    factsTl.to(facts[0], 1, {opacity: 1, top: 0});
+    factsTl.to(facts[1], 1, {opacity: 1, top: 0});
+    factsTl.to(facts[2], 1, {opacity: 1, top: 0});
   }
 
   function menuAnimation() {
@@ -137,6 +202,8 @@ import videoCtrl from './modules/videocontrols';
               </div>`;
             factWrapper.innerHTML += newFact;
           });
+          facts = factsSec.querySelectorAll('.fact');
+          window.addEventListener('scroll', displayFacts, false);
       })
       .catch(function(error) {
         console.log(error);
@@ -151,9 +218,12 @@ import videoCtrl from './modules/videocontrols';
       .then((data) => {
         let statsWrapper = statsSec.querySelector('#stats-wrapper > ul');
         data.stats.forEach(stat => {
-          let item = `<li><div class="stats-organ"><div class="icon-wrapper"><img src="images/${stat.icon}.svg" alt="${stat.organ_title} icon"></div><p class="organ-name">${stat.organ_title}</p></div><div class="organ-success"><p>${stat.success}</p></div><div class="organ-queue"><p>${stat.queue}</p></div></li>`;
+          statsNumbers.push(stat.success);
+          statsNumbers.push(stat.queue);
+          let item = `<li><div class="stats-organ"><div class="icon-wrapper"><img src="images/${stat.icon}.svg" alt="${stat.organ_title} icon"></div><p class="organ-name">${stat.organ_title}</p></div><div class="organ-success"><p class="stat-number">0</p></div><div class="organ-queue"><p class="stat-number">0</p></div></li>`;
           statsWrapper.innerHTML += item;
         });
+        window.addEventListener('scroll', animateStats, false);
       })
       .catch(function(error) {
         console.log(error);
@@ -284,11 +354,14 @@ import videoCtrl from './modules/videocontrols';
     instagramContent.name.forEach(function(name, index) {
       let instaItem = document.createElement('div');
       instaItem.className = 'insta-item';
+      let photoWrapper = document.createElement('div');
+      photoWrapper.className = 'insta-photo-wrapper';
       let instaPhoto = document.createElement('img');
       instaPhoto.src = `images/${instagramContent.photo[index]}_large.jpg`;
       instaPhoto.alt = instagramContent.name[index];
       instaPhoto.className = 'insta-photo media-change';
-      instaItem.appendChild(instaPhoto);
+      photoWrapper.appendChild(instaPhoto);
+      instaItem.appendChild(photoWrapper);
       let instaPost = document.createElement('div');
       instaPost.className = 'insta-post';
       let instaName = document.createElement('p');
@@ -318,8 +391,8 @@ import videoCtrl from './modules/videocontrols';
   getInstagram.call(instaSec.querySelector('#insta-wrapper'));
 
   window.addEventListener('load', videoCtrl, false);
-  // window.addEventListener('resize', getEvents, false);
-    window.addEventListener('resize', sizeElements, false);
+  window.addEventListener('load', animateFacts, false);
+  window.addEventListener('resize', sizeElements, false);
   window.addEventListener('resize', resize.checkScreenSize, false);
   window.addEventListener('resize', resize.changeImageSize, false);
   window.addEventListener('scroll', checkScrollMenu, false);
@@ -327,4 +400,5 @@ import videoCtrl from './modules/videocontrols';
   menuBtns.forEach((button) => {
     button.addEventListener('click', scrollSection, false);
   });
+
 })();
