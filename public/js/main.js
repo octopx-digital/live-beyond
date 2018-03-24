@@ -284,11 +284,14 @@ import videoCtrl from './modules/videocontrols';
     instagramContent.name.forEach(function(name, index) {
       let instaItem = document.createElement('div');
       instaItem.className = 'insta-item';
+      let photoWrapper = document.createElement('div');
+      photoWrapper.className = 'insta-photo-wrapper';
       let instaPhoto = document.createElement('img');
       instaPhoto.src = `images/${instagramContent.photo[index]}_large.jpg`;
       instaPhoto.alt = instagramContent.name[index];
       instaPhoto.className = 'insta-photo media-change';
-      instaItem.appendChild(instaPhoto);
+      photoWrapper.appendChild(instaPhoto);
+      instaItem.appendChild(photoWrapper);
       let instaPost = document.createElement('div');
       instaPost.className = 'insta-post';
       let instaName = document.createElement('p');
