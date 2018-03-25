@@ -1,6 +1,3 @@
-import login from './modules/login';
-
-(() => {
   var buttons = document.querySelectorAll('button');
 
   function getRows(e) {
@@ -124,19 +121,123 @@ import login from './modules/login';
       });
   }
 
+  function registerUser(){
+    let fname = document.querySelector('input[name="fname"]').value;
+    let username = document.querySelector('input[name="username"]').value;
+    let pass = document.querySelector('input[name="password"]').value;
+    let email = document.querySelector('input[name="email"]').value;
+    let url = '/admin/users/register';
+
+    fetch(url, {
+      headers: {
+       "Content-Type": "application/json",
+       "Accept": "application/json, text-plain, */*",
+       "X-Requested-With": "XMLHttpRequest"
+     },
+       method: 'post',
+       body: JSON.stringify({
+        fname: fname,
+        username : username,
+        pass : pass,
+        email : email
+      })
+     })
+      .then((data) => {
+        console.log('success');
+      })
+        .catch(function(error) {
+          console.log(error);
+
+        });
+  }
+
+  function updateUser(){
+    let fname = document.querySelector('input[name="fname"]').value;
+    let username = document.querySelector('input[name="username"]').value;
+    let email = document.querySelector('input[name="email"]').value;
+    let id = document.querySelector('input[name="id"]').value;
+    let form = document.querySelector('.red-mistake');
+    let pass;
+    if (document.querySelector('input[name="password"]').value != ""){
+      // let temp = document.querySelector('input[name="password"]').value;
+      // let temp2 = document.querySelector('input[name="newPassword"]').value;
+      // if(temp == temp2){
+        pass = document.querySelector('input[name="password"]').value;
+      // } else {
+      //   // let p = document.createElement('h3');
+      //   // p.innerHTML = "Your password doesn't match. Try again!";
+      //   // form.appendChild(p);
+      //   let noMatch = `<h3>Your password doesn't match. Try again!</h3>`;
+      //   form.innerHTML += noMatch;
+      //   console.log('no match');
+      //   // document.querySelector('input[name="password"]').value = "";
+      //   // document.querySelector('input[name="newPassword"]').value = "";
+      //   // return;
+      // }
+    }
+    let url = '/admin/users/update/'+id;
+    var userData = {
+      fname: fname,
+      username : username,
+      password : pass,
+      email : email
+    }
+
+    fetch(url, {
+      headers: {
+       "Content-Type": "application/json",
+       "Accept": "application/json, text-plain, */*",
+       "X-Requested-With": "XMLHttpRequest"
+     },
+       method: 'post',
+       body: JSON.stringify(
+        userData
+      )
+     })
+      .then((data) => {
+        console.log('success');
+        window.location.replace("/admin/users");
+      })
+        .catch(function(error) {
+          console.log(error);
+        });
+  }
+
+  function deleteUser(e){
+    e.preventDefault();
+    let id = e.currentTarget.dataset.id;
+
+    let url = `users/delete/${id}`;
+
+    fetch(url, {
+      method: 'post'
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        //if success, redirect to admin page
+        window.location.replace("/admin/users");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   buttons.forEach((button) => {
     let tbl = button.getAttribute('name');
     button.addEventListener('click', getRows, false);
   });
-
   if(document.querySelector('#register')){
     let register = document.querySelector('#register');
-    register.addEventListener('click', login.registerUser , false);
+    register.addEventListener('click', registerUser , false);
+  }
+  if(document.querySelector('#updt')){
+    let update = document.querySelector('#updt');
+    update.addEventListener('click', updateUser , false);
   }
 
-  // if(document.querySelector('#submit')){
-  //   let submit = document.querySelector('#submit');
-  //   submit.addEventListener('click', login.checkRequest , false);
-  // }
-
-})();
+  if(document.querySelectorAll('#deleteUser')){
+    let dlt = document.querySelectorAll('#deleteUser');
+    dlt.forEach((btn) => {
+      btn.addEventListener('click', deleteUser , false);
+    });
+  }

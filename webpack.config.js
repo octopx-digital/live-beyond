@@ -5,8 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = [{
   entry: {
-    main: './public/js/main.js',
-    admin: './public/js/admin.js'
+    main: './public/js/main.js'
   },
   output: {
     path: path.resolve(__dirname, './public/js/build'),
@@ -21,7 +20,8 @@ module.exports = [{
             // loader: 'script-loader'
           }
     ]
-  },
+  }
+  ,
   plugins: [
         new webpack.optimize.UglifyJsPlugin({
           minimize: inProduction

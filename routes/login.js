@@ -4,6 +4,9 @@ var config = require('../config');
 var bodyParser = require('body-parser');
 var connect = require('../utils/sqlConnect');
 var bcrypt = require('bcryptjs');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
+var sess;
 
 var curdate = new Date();
 var year = curdate.getFullYear();
@@ -36,9 +39,7 @@ router.post('/check', (req, res, next) => {
     let logInfo = req.body.username;
     let password = req.body.password;
     let checkUser = `SELECT * FROM users WHERE username = "${logInfo}"`;
-    // console.log(checkUser);
   connect.query(checkUser, (err, result) => {
-    console.log("result: "+result);
     if(result){
       if(result.length > 0) {
         let hash = result[0].password;
@@ -46,6 +47,14 @@ router.post('/check', (req, res, next) => {
             // res === true
             if(response) {
               // req.session.valid = true;
+              sess = req.session;
+              sess.username = req.body.username;
+              var hour = 36000;
+              sess.cookie.expires = new Date(Date.now() + hour);
+              sess.cookie.maxAge = hour;
+              sess.cookie.user = req.body.username;
+              sess.cookie.key = "user_sid";
+              sess.validation = true;
               res.redirect('/admin');
             } else {
               console.log(err);
@@ -55,7 +64,7 @@ router.post('/check', (req, res, next) => {
                 subTitle: 'Login',
                 error: true,
                 message: "Oooops, there's something wrong, try again!",
-                year: year,
+                year: year
               });
             }
         });
@@ -67,7 +76,7 @@ router.post('/check', (req, res, next) => {
           subTitle: 'Login',
           error: true,
           message: "Oooops, there's something wrong, try again!",
-          year: year,
+          year: year
         });
       }
     }
@@ -82,13 +91,9 @@ router.post('/check', (req, res, next) => {
     subTitle: 'Login',
     error: true,
     message: "Seems that there's something wrong, try again!",
-    year: year,
+    year: year
   });
 }
 });
-
-
-
-
 
 module.exports = router;
