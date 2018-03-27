@@ -14,23 +14,23 @@ router.use(bodyParser.urlencoded({ extended: false}));
 router.use(bodyParser.json());
 
 // Function that checks if session was created and username was saved
-// function isLoggedIn(req, res, next){
-//   if(req.session.validation){
-//     console.log(req.session.username);
-//     next();
-//   }
-//   else{
-//     // res.redirect("/login");
-//     res.render('login', {
-//       adminpage: true,
-//       title: 'Live Beyond Your Life | Login',
-//       subTitle: 'Login',
-//       error: true,
-//       message: "Oooops, there's something wrong, try again!",
-//       year: year
-//     });
-//   }
-// }
+function isLoggedIn(req, res, next){
+  if(req.session.validation){
+    console.log(req.session.username);
+    next();
+  }
+  else{
+    res.redirect("/login");
+    // res.render('login', {
+    //   adminpage: true,
+    //   title: 'Live Beyond Your Life | Login',
+    //   subTitle: 'Login',
+    //   error: true,
+    //   message: "Oooops, there's something wrong, try again!",
+    //   year: year
+    // });
+  }
+}
 
 // router.use(function(req, res, next){
 //   if(req.session.validation){
@@ -51,8 +51,9 @@ router.use(bodyParser.json());
 // });
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
     var user = req.session.username;
+    console.log(req.session);
     res.render('admin', {
       adminpage: true,
       user: user,
@@ -71,7 +72,7 @@ router.get('/logout', function(req,res){
   });
 });
 
-router.get('/banner', function (req, res) {
+router.get('/banner', isLoggedIn, function (req, res) {
   console.log(req.session.username);
     let getBanner = `SELECT * FROM banner`;
     connect.query(getBanner, (err, result, fields) => {
@@ -90,7 +91,7 @@ router.get('/banner', function (req, res) {
     });
 });
 
-router.get('/banner/:id',  (req, res) => {
+router.get('/banner/:id', isLoggedIn, (req, res) => {
     let getBanner = `SELECT * FROM banner WHERE id = ${req.params.id}`;
     connect.query(getBanner, (err, result, fields) => {
       if(err) {
@@ -108,7 +109,7 @@ router.get('/banner/:id',  (req, res) => {
     });
 });
 
-router.get('/addbanner', (req, res) => {
+router.get('/addbanner',  isLoggedIn, (req, res) => {
     res.render('form', {
       adminpage: true,
       title: 'Live Beyond Your Life | Admin',
@@ -121,7 +122,7 @@ router.get('/addbanner', (req, res) => {
     });
 });
 
-router.get('/editbanner/:id', (req, res) => {
+router.get('/editbanner/:id',isLoggedIn, (req, res) => {
     res.render('form', {
       adminpage: true,
       title: 'Live Beyond Your Life | Admin',
@@ -135,7 +136,7 @@ router.get('/editbanner/:id', (req, res) => {
     });
 });
 
-router.get('/events',  (req, res) => {
+router.get('/events',isLoggedIn,  (req, res) => {
     let getEvents = `SELECT * FROM events`;
     connect.query(getEvents, (err, result, fields) => {
       if(err) {
@@ -518,7 +519,6 @@ router.post('/users/update/:id', (req, res, next) => {
   if(req.body.password == undefined){
     userUpdate = `fname = "${req.body.fname}", username= "${req.body.username}",  email= "${req.body.email}"`;
     let queryString = query + userUpdate + userId;
-    // console.log(queryString);
     connect.query(queryString, (err, data) => {
       if(err) {
         throw err;
@@ -534,7 +534,6 @@ router.post('/users/update/:id', (req, res, next) => {
       bcrypt.hash(newPass, salt, function(err, hash) {
         userUpdate = `fname = "${req.body.fname}", username= "${req.body.username}", password = "${hash}",  email= "${req.body.email}"`;
         let queryString = query + userUpdate + userId;
-        // console.log(queryString);
         connect.query(queryString, (err, data) => {
           if(err) {
             throw err;
@@ -558,14 +557,7 @@ router.post('/users/delete/:id', (req, res) => {
       throw err; console.log(err);
     } else {
       console.log(result);
-      // res.redirect('/admin/users');
       res.json(result);
-      // res.render('users', {
-      //   adminpage: true,
-      //   title: 'Live Beyond Your Life | Users',
-      //   subTitle: "Users",
-      //   year: year
-      // });
     }
   });
 });

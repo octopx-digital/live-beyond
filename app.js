@@ -17,7 +17,7 @@ var stats = require('./routes/stats');
 var myths = require('./routes/myths');
 var events = require('./routes/events');
 var video = require('./routes/video');
-// var login = require('./routes/login');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -41,14 +41,14 @@ app.use(session({
   secret: 'donate',
   resave: false,
   saveUninitialized: false,
-  maxAge: 10000,
+  maxAge: 360000,
   cookie: {
     username: ''
   },
   store: new FileStore()
 }));
 
-// // This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+//ANOTHER MIDDLEWARE I'VE TRIED Middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
 // app.use((req, res, next) => {
 //     if (req.cookies.user_sid && !req.session.username) {
 //         res.clearCookie('user_sid');
@@ -56,7 +56,7 @@ app.use(session({
 //     next();
 // });
 //
-// middleware function to check for logged-in users
+//Middleware function to check for logged-in users
 // var sessionChecker = (req, res, next) => {
 //     if (req.session.validation) {
 //         console.log(req.session.validation);
@@ -78,7 +78,7 @@ app.use('/stats', stats);
 app.use('/myths', myths);
 app.use('/events', events);
 app.use('/video', video);
-// app.use('/login', login);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
