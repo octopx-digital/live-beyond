@@ -75,7 +75,6 @@ export default function videoCtrl(){
   }
   //Add video event listeners
   function addVideoListeners() {
-    console.log('adding handlers');
     let isFullScreen = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
     video.addEventListener('timeupdate', updateVideoCurrentTime, false);
     video.addEventListener('timeupdate', slideProgress, false);
