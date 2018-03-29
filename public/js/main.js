@@ -239,7 +239,10 @@ import CountUp from 'countup.js';
         let newData = data.video[0];
           let videoWrapper = document.querySelector('#video-wrapper');
           let placeholder = `<video id="video" class="video-change" poster="images/${newData.placeholder}_large.jpg">
-              <source src="videos/${newData.video}.mp4"></source></video>
+              <source src="videos/${newData.video}_large.mp4"></source>
+              <source src="videos/${newData.video}_large.webm"></source>
+              <source src="videos/${newData.video}_large.ogv"></source>
+              </video>
               <div id="over-video"><div id="video-btn">
                   <i class="ion-play" aria-hidden="true"></i>
                 </div></div><div id="video-controls">
