@@ -6,7 +6,7 @@
   "author": "Octopx Digital",
   "license": "MIT",
   "scripts": {
-    "start": "node app",
+    "start": "nodemon -i ./sessions app",
     "dev": "webpack --watch",
     "production": "NODE_ENV=production webpack"
   },
