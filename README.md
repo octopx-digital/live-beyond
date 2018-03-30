@@ -53,7 +53,7 @@ This project is built to run in NodeJS, therefore it is using nodemon as a utili
 Then, to execute this command, run in the root directory of your local repository of the project:
 
 ```
-nodemon app
+nodemon -i ./sessions app
 ```
 
 ## License
