@@ -1,0 +1,57 @@
+{{> nav-admin}}
+<div id="admin-container">
+
+<h3 class="greeting">{{ subTitle }}</h3>
+
+<div id="item-list">
+  <ul id="item-wrapper">
+    {{#each userData}}
+    <li>{{ fname }}<a href="#" data-id="{{ id }}" class="delete-btn" id="deleteUser">delete</a><a href="users/edit/{{ id }}">edit</a></li>
+    {{/each}}
+  </ul>
+
+  {{#if userData}}
+    <div id="item-add">
+        <a  href="/admin/user/register">Create New User</a>
+    </div>
+  {{/if}}
+</div>
+
+
+{{#if singleUSer}}
+<form class="clearfix">
+  <h2>{{ singleUSer.fname }}</h2>
+  <input type="number" hidden name="id" value="{{ singleUSer.id }}">
+  <label for="fname">Full Name:</label>
+  <input type="text" name="fname" value="{{ singleUSer.fname }}">
+  <label for="username">Username:</label>
+  <input type="text" name="username" value="{{ singleUSer.username }}">
+  <label for="email">Email:</label>
+  <input type="email" name="email" value="{{ singleUSer.email }}">
+  <label for="Password">New password:</label>
+  <input type="password" name="password" value="">
+  <!-- <label for="Password">Confirm password:</label>
+  <input type="password" name="newPassword" value=""> -->
+  <input type="submit" id="updt" name="update" value="SAVE">
+</form>
+{{/if}}
+
+{{#if register}}
+  <form class="clearfix">
+    <label>Full Name:</label>
+    <input type="text" name="fname" required value="">
+    <br>
+    <label>Username:</label>
+    <input type="text" name="username" required value="">
+    <br>
+    <label>Password:</label>
+    <input type="password" name="password" required value="">
+    <br>
+    <label>Email:</label>
+    <input type="email" name="email" required value="">
+    <br><br>
+    <input type="submit" id="register" name="submit" value="REGISTER">
+  </form>
+{{/if}}
+
+</div>

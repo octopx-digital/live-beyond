@@ -14,6 +14,14 @@ body {
   display: none;
 }
 
+.clearfix:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 .text {
   font-family: $fontText;
   font-weight: 300;
@@ -30,6 +38,13 @@ header, footer {
   max-width: 1440px;
   margin: 0 auto;
   overflow: hidden;
+}
+
+.red-mistake{
+  padding: 10px;
+  h3{
+    color: $magenta;
+  }
 }
 
 header{
@@ -127,6 +142,14 @@ header.openmenu {
     #main-nav {
       top: 0;
     }
+}
+
+header.admin{
+  @extend header;
+  position:relative;
+  #main-nav{
+    z-index:auto;
+  }
 }
 
 #facts {
@@ -982,17 +1005,14 @@ footer {
 }
 
 // Admin Style
-
 #admin-container {
-  // background-color: red;
   max-width: 1440px;
   min-width: 312px;
-  height: 850px;
-  margin: 0 auto;
+  min-height: 350px;
+  margin: 20px auto 40px auto;
   width: 90%;
   text-align: center;
-  margin-top: 30px;
-  padding-top: 20px;
+  padding: 60px 20px;
   font-family: $fontText;
   border: 4px solid $orchid;
   .admin-logo{
@@ -1006,9 +1026,16 @@ footer {
   text-transform: uppercase;
   }
   h1{
-    margin-top: 25px;
+    margin-top: 55px;
     font-size: 1.3rem;
     color: $orchid;
+  }
+  h3.greeting{
+    text-transform: capitalize;
+    padding: 20px;
+    color: $wine;
+    font-weight: 400;
+    font-size: 1.5rem;
   }
   .admin-button{
     width: 80px;
@@ -1030,9 +1057,9 @@ footer {
   }
   #item-add
     {
-    margin-bottom: 45px;
+    margin: 30px 0 45px 0;
     a {
-    padding: 5px 30px;
+    padding: 5px 45px;
     background-color: $wine;
     color: white;
     margin: 0 auto;
@@ -1050,9 +1077,9 @@ footer {
 
   }
   #item-wrapper {
-  width: 50%;
+  width: 53%;
   min-width: 310px;
-  margin: 0 auto;
+  margin: 50px auto;
     li {
       text-align: left;
       margin-bottom: 20px;

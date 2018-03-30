@@ -20,7 +20,8 @@ module.exports = [{
             // loader: 'script-loader'
           }
     ]
-  },
+  }
+  ,
   plugins: [
         new webpack.optimize.UglifyJsPlugin({
           minimize: inProduction

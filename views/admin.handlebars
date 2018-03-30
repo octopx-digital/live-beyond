@@ -1,8 +1,12 @@
+{{> nav-admin}}
 <div id="admin-container">
 
   <img class="admin-logo" src="images/logo_gray.svg" alt="Main Logo">
 
 <h1>{{title}}</h1>
+{{#if user}}
+  <h3 class="greeting">Welcome {{ user }}</h3>
+{{/if}}
 
 <button type="button" class="admin-button" name="banner">Banner</button>
 <button type="button" class="admin-button" name="events">Events</button>

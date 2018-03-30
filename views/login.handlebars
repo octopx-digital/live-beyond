@@ -1,0 +1,23 @@
+<div id="admin-container">
+
+<img class="admin-logo" src="/images/logo_gray.svg" alt="Main Logo">
+<h1>{{ subTitle }}</h1>
+
+{{#if error}}
+<div class="red-mistake">
+  <h3>{{ message }}</h3>
+</div>
+{{/if}}
+
+  <section class ="admin-section">
+    <form action="/login/check/" method="post">
+      <label>Username:</label>
+      <input type="text" name="username" value="">
+      <br>
+      <label>Password:</label>
+      <input type="password" name="password" value="">
+      <br><br>
+      <input type="submit" id="submit" name="submit" value="LOGIN">
+    </form>
+  </section>
+</div>
