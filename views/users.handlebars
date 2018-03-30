@@ -1,22 +1,25 @@
 {{> nav-admin}}
 <div id="admin-container">
 
-<h2>{{ subTitle }}</h2>
+<h3 class="greeting">{{ subTitle }}</h3>
 
-<div>
-  <ul>
+<div id="item-list">
+  <ul id="item-wrapper">
     {{#each userData}}
-    <li><p>{{ fname }}</p> <p>{{ username }}</p><a href="#" data-id="{{ id }}" id="deleteUser">delete</a><a href="users/edit/{{ id }}">edit</a></li>
+    <li>{{ fname }}<a href="#" data-id="{{ id }}" class="delete-btn" id="deleteUser">delete</a><a href="users/edit/{{ id }}">edit</a></li>
     {{/each}}
   </ul>
-    {{#if userData}}
-      <a href="/admin/user/register">Create New User</a>
-    {{/if}}
+
+  {{#if userData}}
+    <div id="item-add">
+        <a  href="/admin/user/register">Create New User</a>
+    </div>
+  {{/if}}
 </div>
 
 
 {{#if singleUSer}}
-<form>
+<form class="clearfix">
   <h2>{{ singleUSer.fname }}</h2>
   <input type="number" hidden name="id" value="{{ singleUSer.id }}">
   <label for="fname">Full Name:</label>
@@ -34,7 +37,7 @@
 {{/if}}
 
 {{#if register}}
-  <form>
+  <form class="clearfix">
     <label>Full Name:</label>
     <input type="text" name="fname" required value="">
     <br>

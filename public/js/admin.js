@@ -4,7 +4,9 @@
     let tbl = e.currentTarget.getAttribute('name');
     let url = `admin/${tbl}`;
 
-    fetch(url)
+    fetch(url, {
+        credentials: "include"
+      })
       .then((resp) => resp.json())
       .then((data) => {
         let addSection = document.querySelector('#item-add');
@@ -31,7 +33,9 @@
     let section = document.querySelector('section').id;
     let url = `/admin/${section}`;
 
-    fetch(url)
+    fetch(url, {
+        credentials: "include"
+      })
       .then((resp) => resp.json())
       .then((data) => {
         let form = document.querySelector('form');
@@ -66,7 +70,9 @@
     let section = document.querySelector('section').id;
     let url = `/admin/${section}/${id}`;
 
-    fetch(url)
+    fetch(url, {
+        credentials: "include"
+      })
       .then((resp) => resp.json())
       .then((data) => {
         let form = document.querySelector('form');
@@ -109,8 +115,9 @@
     let url = `/${section}/delete/${id}`;
 
     fetch(url, {
-      method: 'delete'
-    })
+      method: 'delete',
+      credentials: "include"
+      })
       .then((resp) => resp.json())
       .then((data) => {
         //if success, redirect to admin page
@@ -135,6 +142,7 @@
        "X-Requested-With": "XMLHttpRequest"
      },
        method: 'post',
+       credentials: "include",
        body: JSON.stringify({
         fname: fname,
         username : username,
@@ -189,6 +197,7 @@
        "Accept": "application/json, text-plain, */*",
        "X-Requested-With": "XMLHttpRequest"
      },
+      credentials: "include",
        method: 'post',
        body: JSON.stringify(
         userData
@@ -210,6 +219,7 @@
     let url = `users/delete/${id}`;
 
     fetch(url, {
+      credentials: "include",
       method: 'post'
     })
       .then((resp) => resp.json())

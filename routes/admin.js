@@ -21,39 +21,12 @@ function isLoggedIn(req, res, next){
   }
   else{
     res.redirect("/login");
-    // res.render('login', {
-    //   adminpage: true,
-    //   title: 'Live Beyond Your Life | Login',
-    //   subTitle: 'Login',
-    //   error: true,
-    //   message: "Oooops, there's something wrong, try again!",
-    //   year: year
-    // });
   }
 }
 
-// router.use(function(req, res, next){
-//   if(req.session.validation){
-//     console.log(req.session.username);
-//     next();
-//   }
-//   else{
-//     // res.redirect("/login");
-//     res.render('login', {
-//       adminpage: true,
-//       title: 'Live Beyond Your Life | Login',
-//       subTitle: 'Login',
-//       error: true,
-//       message: "Oooops, there's something wrong, try again!",
-//       year: year
-//     });
-//   }
-// });
-
 /* GET home page. */
-router.get('/', isLoggedIn, function(req, res, next) {
+router.get('/', isLoggedIn,  function(req, res, next) {
     var user = req.session.username;
-    console.log(req.session);
     res.render('admin', {
       adminpage: true,
       user: user,
@@ -72,8 +45,7 @@ router.get('/logout', function(req,res){
   });
 });
 
-router.get('/banner', isLoggedIn, function (req, res) {
-  console.log(req.session.username);
+router.get('/banner',  function (req, res) {
     let getBanner = `SELECT * FROM banner`;
     connect.query(getBanner, (err, result, fields) => {
       if(err) {
@@ -91,7 +63,7 @@ router.get('/banner', isLoggedIn, function (req, res) {
     });
 });
 
-router.get('/banner/:id', isLoggedIn, (req, res) => {
+router.get('/banner/:id',  (req, res) => {
     let getBanner = `SELECT * FROM banner WHERE id = ${req.params.id}`;
     connect.query(getBanner, (err, result, fields) => {
       if(err) {
@@ -109,7 +81,7 @@ router.get('/banner/:id', isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/addbanner',  isLoggedIn, (req, res) => {
+router.get('/addbanner',   (req, res) => {
     res.render('form', {
       adminpage: true,
       title: 'Live Beyond Your Life | Admin',
@@ -122,7 +94,7 @@ router.get('/addbanner',  isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/editbanner/:id',isLoggedIn, (req, res) => {
+router.get('/editbanner/:id', (req, res) => {
     res.render('form', {
       adminpage: true,
       title: 'Live Beyond Your Life | Admin',
@@ -136,7 +108,8 @@ router.get('/editbanner/:id',isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/events',isLoggedIn,  (req, res) => {
+router.get('/events',  (req, res) => {
+  console.log(req.session.username);
     let getEvents = `SELECT * FROM events`;
     connect.query(getEvents, (err, result, fields) => {
       if(err) {
@@ -487,7 +460,7 @@ router.post('/users/register',  (req, res, next) => {
 router.get('/user/register',  (req, res, next) => {
     res.render('users', {
       adminpage: true,
-      title: 'Live Beyond Your Life | Users',
+      title: 'Users',
       register : true,
       subTitle: "Create New User",
       year: year
