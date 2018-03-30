@@ -49,6 +49,10 @@ function changeImageSize() {
     var vid = document.querySelectorAll('.video-change');
     for (let i = 0; i < vid.length; i++) {
       vid[i].poster = vid[i].poster.replace(curSize, screensize);
+      let vidsource = vid[i].querySelectorAll('source');
+      for (let j = 0; j < vidsource.length; j++) {
+        vidsource[j].src = vidsource[j].src.replace(curSize, screensize);
+      }
     }
     curSize = screensize;
   }

@@ -19,10 +19,6 @@ export default function videoCtrl(){
   var videoPlaying = false;
   video.volume = 0.8;
 
-  var videoCtrlTl = new TimelineLite({
-  paused: true
-});
-
   // function to play/pause video
   function togglePlayVideo() {
     let icon = playbtn.querySelector('.video-ctrl-bt');
@@ -33,7 +29,6 @@ export default function videoCtrl(){
       playToPauseBtn(icon);
       videobtn.style.display = 'none';
       addVideoListeners();
-      outVideoControl();
       videoPlaying = true;
     }
     else {
@@ -41,7 +36,7 @@ export default function videoCtrl(){
       pauseToPlayBtn(icon);
       videobtn.style.display = 'block';
       removeVideoListeners();
-      videoCtrlTl.reverse();
+      showVideoControl();
       videoPlaying = false;
     }
   }
@@ -102,23 +97,24 @@ export default function videoCtrl(){
     video.currentTime = time;
     progressbar.style.width = (perc*100).toString()+'%';
   }
+
   // remove event listeners of video and controls
-function removeVideoListeners() {
-  video.removeEventListener('timeupdate', updateVideoCurrentTime, false);
-  video.removeEventListener('ended', reloadVideo, false);
-  overvideo.removeEventListener('mouseout', outVideoControl, false);
-  overvideo.removeEventListener('mouseover', overVideoControl, false);
-  videocontrol.removeEventListener('mouseout', outVideoControl, false);
-  videocontrol.removeEventListener('mouseover', overVideoControl, false);
-}
+  function removeVideoListeners() {
+    video.removeEventListener('timeupdate', updateVideoCurrentTime, false);
+    video.removeEventListener('ended', reloadVideo, false);
+    overvideo.removeEventListener('mouseout', outVideoControl, false);
+    overvideo.removeEventListener('mouseover', overVideoControl, false);
+    videocontrol.removeEventListener('mouseout', outVideoControl, false);
+    videocontrol.removeEventListener('mouseover', overVideoControl, false);
+  }
 
-// update video running time on video control
-function updateVideoCurrentTime() {
-  let curtime = convertSecondsToMinutes(video.currentTime);
-  videotime.innerHTML = curtime+' / '+videoduration;
-}
+  // update video running time on video control
+  function updateVideoCurrentTime() {
+    let curtime = convertSecondsToMinutes(video.currentTime);
+    videotime.innerHTML = curtime+' / '+videoduration;
+  }
 
-//convert time in seconds.miliseconds to minutes:seconds
+  //convert time in seconds.miliseconds to minutes:seconds
   function convertSecondsToMinutes(rawtime) {
     let inttime = Math.floor(rawtime);
     let minutes = Math.floor(inttime/60);
@@ -127,21 +123,26 @@ function updateVideoCurrentTime() {
     return time;
   }
 
-// function to check if video control must be hidden when video is playing and cursor is not over the video
+  // function to check if video control must be hidden when video is playing and cursor is not over the video
   // plays timeline to hide video control
   function outVideoControl() {
-    videoCtrlTl.play();
+    hideVideoControl();
   }
 
   // function to check if video control must be shown when video is playing and cursor is over the video
   // plays timeline in reverse to show video control
   function overVideoControl() {
-    videoCtrlTl.reverse();
+    showVideoControl()
   }
 
-  // timelines to hide video control when video is playing and mouse is not over the video
+  // hide video control when video is playing and mouse is not over the video
   function hideVideoControl() {
-    videoCtrlTl.to(videocontrol, 1, {opacity: 0});
+    TweenLite.to(videocontrol, 1, {opacity: 0});
+  }
+
+  // show video control when video is playing and mouse is over the video
+  function showVideoControl() {
+    TweenLite.to(videocontrol, 1, {opacity: 1});
   }
 
   // change Play button from play to pause icon
@@ -156,18 +157,18 @@ function updateVideoCurrentTime() {
     el.classList.add('ion-play');
   }
 
-// reload video to its initial state
-function reloadVideo() {
-  let icon = playbtn.querySelector('.video-ctrl-bt');
-  video.load();
-  pauseToPlayBtn(icon);
-  videobtn.style.display = 'block';
-  videotime.innerHTML = '0:00 / '+videoduration;
-  removeVideoListeners();
-  videoCtrlTl.reverse();
-  videoPlaying = false;
-  progressbar.style.width = null;
-}
+  // reload video to its initial state
+  function reloadVideo() {
+    let icon = playbtn.querySelector('.video-ctrl-bt');
+    video.load();
+    pauseToPlayBtn(icon);
+    videobtn.style.display = 'block';
+    videotime.innerHTML = '0:00 / '+videoduration;
+    removeVideoListeners();
+    showVideoControl();
+    videoPlaying = false;
+    progressbar.style.width = null;
+  }
 
   // change volume regarding position clicked on volume bar
   // also change position of colorful area of volume bar
@@ -249,7 +250,7 @@ function reloadVideo() {
       overvideo.removeEventListener('mouseout', outVideoControl, false);
       overvideo.removeEventListener('mouseover', overVideoControl, false);
       if (video.currentTime > 0 && !(video.paused) && !(video.ended)) {
-        outVideoControl();
+        hideVideoControl();
       }
     }
     else {
@@ -264,7 +265,6 @@ function reloadVideo() {
     }
   }
 
-  window.addEventListener('load', hideVideoControl, false);
   video.addEventListener('click', togglePlayVideo, false);
   overvideo.addEventListener('click', togglePlayVideo, false);
   playbtn.addEventListener('click', togglePlayVideo, false);
