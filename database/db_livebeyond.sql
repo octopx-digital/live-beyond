@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2018 at 10:58 PM
+-- Generation Time: Mar 31, 2018 at 12:40 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -73,7 +73,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `name`, `title`, `date`, `time`, `address`, `partner`, `logo`, `link`, `position`) VALUES
-(1, 'yoga_class', 'Yoga class at Budweiser Gardens', 'March 24th', '10am', '99 Dundas St, London, ON', 'Yoga Shack', 'logo_yoga', 'http://www.yogashack.ca', 1),
+(1, 'yoga_class', 'Yoga class at Budweiser Gardens', 'April 24th', '10am', '99 Dundas St, London, ON', 'Yoga Shack', 'logo_yoga', 'http://www.yogashack.ca', 1),
 (2, 'support_group', 'Support group talk event', 'April 19th', '2pm to 5pm', 'London Public Library - 251 Dundas St, London, ON', 'Be A Donor', 'logo_beadonor', 'https://beadonor.ca', 2),
 (3, 'movie_tickets', 'Half price movie tickets', 'April', '', 'All Cineplex locations in Ontario', 'Cineplex', 'logo_cineplex', 'https://www.cineplex.com', 3),
 (4, 'gym_membership', '30% discount on gym memberships', 'March - April', NULL, 'All Goodlife Fitness locations in Ontario', 'Goodlife Fitness', 'logo_goodlife', 'https://www.goodlifefitness.com', 4),
@@ -175,11 +175,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fname`, `username`, `password`, `email`, `active`) VALUES
 (4, 'Rick', 'rick', '$2a$10$IRXBqf4Rzgpv2XnC1DrefegO5S6q8uYbPChAJ/jsf/d3/lgNrlfE.', 'rick@email.com', 1),
-(5, 'Helena', 'Hmumy', '$2a$10$nV3xuoqtcaSamCRbEVy1zucN0D1CGpAtqYf6I3EbqaMso8xbDDp8W', 'helena@email.com', 1),
-(6, 'Fernando', 'FPenha', '$2a$10$zN44hmV5u8XXNHCmXH87CuGz.m10p5FlZa0I4TpoAnCHXm58uQ4zu', 'email@email.com', 0),
-(7, 'Eric', 'eric', '$2a$10$myhI6W1XcIrl1OQsAPbHMuAACzt2cS5UfFvCUiOYzbp11v/VOTbdm', 'eric@email.com', 1),
-(8, 'barbara', 'barbs', '$2a$10$7NkeQy.7uFRMFsvHoZgxDuHxhPw9HAELUEP/leZ2/9hJO6vMy8lMq', 'barbs@email.com', 1),
-(9, 'mommy', 'mommy', '$2a$10$SYCUlVcPvBYSELfCGYLBHec8hNsuyrepXSXgNmrKGrR4YiVL/B64u', 'mommy@email.com', 0);
+(5, 'Helena', 'helena', '$2a$10$eMpBxG48g9nWayQPero.D.Qv6W1f30ZunrxZ5ky.bhcCFsRCepg9K', 'helena@email.com', 1),
+(10, 'Admin', 'admin', '$2a$10$x8zuehC0fkPn0Wuys/DAZ.mCBluKULMOBBzxYnlKAServPBjsJ9Au', 'admin@email.com', 1);
 
 -- --------------------------------------------------------
 
@@ -284,7 +281,7 @@ ALTER TABLE `stats`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `video`
