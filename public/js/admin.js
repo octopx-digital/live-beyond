@@ -155,7 +155,7 @@
       })
         .catch(function(error) {
           console.log(error);
-
+          window.location.replace("/admin/users");
         });
   }
 
