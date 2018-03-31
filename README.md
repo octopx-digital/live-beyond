@@ -1,4 +1,4 @@
-# Live Beyond Your Life - In Progress
+# Live Beyond Your Life
 
 This is the website for "Live Beyond Your Life" organ donation campaign in Ontario, Canada.
 
@@ -46,15 +46,21 @@ Edit <code>config.js</code>, including the correct credentials of your database 
 
 ## Execution
 
-This project is built to run in NodeJS, therefore it is using nodemon as a utility to monitor for any changes in your source and automatically restart your server. To install, get node.js, then from your terminal run:
-
-```npm install -g nodemon```
-
-Then, to execute this command, run in the root directory of your local repository of the project:
+This project is built to run in NodeJS, based on NPM. Therefore, on Terminal, run the command below in the root folder of the project to execute the application:
 
 ```
-nodemon -i ./sessions app
+npm start
 ```
+
+Now, in any browser you like, access the URL `http://localhost:3000` to visit the main page of the campaign website. To access the Admin page, go to `http://localhost:3000/admin` and insert the correct credentials.
+
+## Authors
+
+* [**Barbara Bombachini**](https://github.com/bbombachini)  
+* [**Emre Filiz**](https://github.com/emrefiliz)  
+* [**Eric Lee**](https://github.com/elee378)  
+* [**Flavia Tozzini**](https://github.com/f-tozzini)  
+* [**Mauricio Silveira**](https://github.com/maursilveira)  
 
 ## License
 
